@@ -1,0 +1,550 @@
+/*Inicio de pag*/
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'open sans';
+}
+
+
+/*Inicio de pag*/
+
+/*Cabecera de la web*/
+.cabecera {
+    display: flex;
+    background: #b85d02c2;
+    justify-content: space-between;
+    padding: 0px 20px;
+}
+
+.logo {
+    margin: 26px 32px;
+    letter-spacing: 5px;
+    font-family: 'open Sans';
+    width: 27%;
+    font-size: 25px;
+    font-weight: bold;
+    color: white;
+    text-decoration: none;
+}
+
+
+
+.menu{
+    display: flex;
+    float: right;
+    list-style: none;
+    margin: 29px;
+}
+
+
+.menu a {
+    color: #fff;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    transition: all 0.3s linear;
+    font-size: 20px;
+    border-radius: 9px;
+}
+
+.menu a:hover{
+    background: #ff8901b0;
+}
+/*Cabecera de la web*/
+
+/*Sobre nosotros */
+.about-us-sect {
+    padding: 0px 40px;
+    display: flex;
+    justify-content: center;
+}
+
+.about-us-content {
+    width: 100%;
+    max-width: 1500px;
+    padding: 52px 0 60px 0;
+}
+
+.about-us-content h2{
+    color: #e44700;
+    font-size: 44px;
+}
+
+.about-us-content p {
+    text-align: justify;
+    font-size: 22px;
+    color: #763600;
+    margin-top: 19px;
+    line-height: 40px;
+}
+/*Sobre nosotros */
+
+
+
+/*Vision, mision, valores*/
+.about-services{
+    background: #ffddb4;
+}
+
+.row-cont {
+    padding: 46px 20px;
+    display: flex;
+    justify-content: center;
+}
+
+.servicio-cont {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 67px;
+    width: fit-content;
+}
+
+.servicio-ind{
+    width: 263px;
+    height: 228px;
+    text-align: center;
+    border: 2px solid #ff7f00;
+    border-radius: 24px;
+}
+
+.servicio-ind p {
+    padding: 8px 13px 42px;
+    color: #763600;
+    font-size: 16px;
+    line-height: 26px;
+}
+
+.servicio-ind > ul {
+    margin-left: 48px;
+    margin-top: 11px;
+    margin-bottom: 58px;
+    color: #813b02;
+}
+/*Vision, mision, valores*/
+
+/*Servicios*/
+.servicios {
+    background-attachment: fixed;
+    padding-top: 35px;
+    padding-bottom: 50px;
+    width: 100%;
+    height: 551px;
+    background: #181617;
+    background: -webkit-linear-gradient(to right, hsla(29, 95%, 50%, 0.459), hsla(24, 45%, 52%, 0.664)), url(../img/fondo-servicios.jpg);
+    background: linear-gradient(to right, hsl(29deg 95% 50% / 80%), hsl(32deg 100% 50% / 80%)), url(../img/fondo-servicios.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+}
+
+.servicios h1 {
+    text-align: center;
+    color: #ffffff !important;
+    padding-bottom: 48px;
+    padding-top: 15px;
+    font-size: 43px;
+    font-family: sans-serif;
+}
+
+.servicios img {
+    width: 82px;
+    margin-top: 20px;
+}
+
+.contenedor-general {
+    padding: 0px 60px;
+}
+
+.contenedor-de-cajas {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.contenedor-de-cajas1 {
+
+}
+
+
+.servicioss {
+    width: 29%;
+    text-align: center;
+    border: 2px solid #ffffff;
+    border-radius: 17px;
+}
+.servicioss > h3 {
+    color: #ffffff;
+    font-size: 33px;
+    margin-top: 18px;
+}
+
+.servicioss p {
+    padding: 11px 21px 25px;
+    color: #fffaf6;
+    font-size: 19px;
+    line-height: 26px;
+}
+
+/*Servicios*/
+
+/*Contactos*/
+
+.seguir {
+    background: #ffffff;
+    margin: 20px 54px 0px 55px;
+    padding: 10px;
+    font-size: 17px;
+    border-radius: 0px;
+    border: 2px solid #e44700;
+    /* color: #e44700; */
+}
+
+.seguir b {
+    color: #ff5000;
+}
+
+.contenedor-contacto h1 {
+    margin: 33px 0px 30px 0px;
+    color: #e44700;
+    font-size: 36px;
+    /* text-decoration: underline; */
+    text-align: center;
+}
+
+.grupo-form {
+    /* margin: 20px; */
+    padding: 10px;
+    /* width: 31px; */
+    /* height: 0px; */
+    /* size: 0px; */
+}
+
+.datos {
+    margin: 14px 20px;
+}
+
+#caja {
+    margin-top: 1px;
+}
+
+#caja2 {
+    width: 222px;
+}
+
+#caja3 {
+    width: 293px;
+}
+
+form.contact-form {
+    margin: 0px 0px 47px 107px;
+}
+
+.fila {
+    display: flex;
+}
+
+.control-form {
+    width: 441px;
+    height: 52px;
+    padding: 13px;
+    font-size: 16px;
+    border: 2px solid #e65300;
+    border-radius: 10px;
+}
+
+.grupo-form textarea {
+    width: 441px;
+    height: 137px;
+    padding: 13px;
+    font-size: 15px;
+    border: 2px solid #e65300;
+    border-radius: 10px;
+    font-family: 'Open Sans';
+}
+
+button.btn.btn-primary {
+    margin: 9px 11px;
+    padding: 12px;
+    font-size: 17px;
+    border-radius: 13px;
+    color: #fff;
+    background: #e65300;
+    border: 0px solid;
+    font-weight: bolder;
+}
+
+
+
+/*Contactos*/
+
+.contenedor {
+    padding: 60px 0;
+    width: 100%;
+    max-width: 1000px;
+
+
+}
+
+
+
+.titulo {
+    color: #e44700;
+    font-size: 44px;
+}
+
+/* Header */
+
+header {
+    width: 100%;
+    height: 665px;
+    background: -webkit-linear-gradient(to right, hsla(29, 95%, 50%, 0.459), hsla(24, 45%, 52%, 0.664)), url(../img/portada.jpg);
+    background: linear-gradient(to right, hsl(29deg 95% 50% / 46%), hsl(32deg 100% 50% / 42%)), url(../img/portada.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+}
+
+
+
+header .textos-header{
+    height: 194px;
+    width: 54%;
+    margin: 148px 62px 120px 69px;
+    
+}
+
+.textos-header h1{
+    font-size: 50px;
+    color:#fff;
+}
+
+.textos-header h2{
+    font-size: 30px;
+    font-weight: 300;
+    color:#fff;
+}
+
+.wave{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+/* About us */
+
+main .sobre-nosotros{
+    padding: 52px 0 60px 0;
+}
+.contenedor-sobre-nosotros{
+    width: 207%;
+}
+
+.imagen-about-us{
+    width: 48%;
+}
+
+.sobre-nosotros .contenido-textos{
+    width: 48%;
+}
+
+.contenido-textos h3{
+    margin-bottom: 15px;
+}
+
+.contenido-textos h3 span{
+    background: #4d0686;
+    color: #fff;
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    width: 30px;
+    height: 30px;
+    padding: 2px;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, .5);
+    margin-right: 5px;
+}
+
+.contenido-textos p{
+    padding: 0px 0px 22px -2px;
+    font-weight: 4000;
+    text-align: justify;
+    font-size: 22px;
+    color: #763600;
+    margin-top: 19px;
+    line-height: 40px;
+}
+
+/* Galeria */
+
+
+.portafolio{
+    background: #f2f2f2;
+}
+
+.galeria-port{
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.imagen-port{
+    width: 24%;
+    margin-bottom: 10px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, .5);
+}
+
+.imagen-port > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.hover-galeria{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    transform: scale(0);
+    background: hsla(273,91%,27%, 0.7);
+    transition: transform .5s;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+
+.hover-galeria img{
+    width: 50px;
+}
+
+.hover-galeria p{
+    color: #fff;
+}
+
+.imagen-port:hover .hover-galeria{
+    transform: scale(1);
+}
+
+/* Clients */
+
+.cards{
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.cards .card{
+    background: #4d0686;
+    display: flex;
+    width: 46%;
+    height: 200px;
+    align-items: center;
+    justify-content: space-evenly;
+    border-radius: 5px;
+    box-shadow: 0 0 6px 0 rgba(0, 0, 0, 0.6);
+}
+
+.cards .card img{
+    width: 100px;
+    height: 100px;
+    object-fit: cover;
+    border: 3px solid #fff;
+    border-radius: 50%;
+    display: block;
+}
+
+.cards .card > .contenido-texto-card{
+    width: 60%;
+    color: #fff;
+}
+
+.cards .card > .contenido-texto-card p{
+    font-weight: 300;
+    padding-top: 5px;
+}
+
+/*  Our team */
+
+
+
+.servicio-ind > h3 {
+    color: #ff7300;
+    font-size: 33px;
+    margin-top: 18px;
+}
+
+.servicio-ind > ul > li {
+    width: 8%;
+}
+
+
+
+
+.servicio-ind img{
+    width: 90%;
+}
+
+
+.titulo-final{
+    text-align: center;
+    font-size: 24px;
+    margin: 20px 0 0 0;
+    color: #ffffff;
+}
+
+
+footer {
+        background: #a45302;
+        padding: 13px 0 30px 0;
+        margin: auto;
+  overflow: hidden;
+   }
+
+
+@media (max-width:980px) {
+
+    .servicio-cont {
+        justify-content: center;
+    }
+}
+
+@media (max-width:845px) {
+
+    .menu{
+        display: none;
+    }
+
+    .cabecera .logo{
+        width: 100%;
+    }
+}
+
+@media (max-width:1015px) {
+
+    .textos-header h1{
+        font-size: 2.5em;
+    }
+
+   .about-us-content h2 {
+    text-align: center;
+   } 
+}
+
+@media (max-width:635px) {
+
+    .textos-header h1{
+        font-size: 2.0em;
+    }
+
+    .about-us-content h2 {
+        text-align: center;
+       } 
+}
