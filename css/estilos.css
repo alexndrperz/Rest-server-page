@@ -8,6 +8,7 @@
 
 body {
     font-family: 'open sans';
+    padding-bottom: 47px;
 }
 
 
@@ -133,7 +134,7 @@ body {
     padding-top: 35px;
     padding-bottom: 50px;
     width: 100%;
-    height: 551px;
+    /* height: 551px; */
     background: #181617;
     background: -webkit-linear-gradient(to right, hsla(29, 95%, 50%, 0.459), hsla(24, 45%, 52%, 0.664)), url(../img/fondo-servicios.jpg);
     background: linear-gradient(to right, hsl(29deg 95% 50% / 80%), hsl(32deg 100% 50% / 80%)), url(../img/fondo-servicios.jpg);
@@ -162,8 +163,11 @@ body {
 
 .contenedor-de-cajas {
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
+    flex-wrap: wrap;
+    gap: 34px;
+    /* margin: auto; */
 }
 
 .contenedor-de-cajas1 {
@@ -172,8 +176,9 @@ body {
 
 
 .servicioss {
-    width: 29%;
+    /* width: 29%; */
     text-align: center;
+    max-width: 362px;
     border: 2px solid #ffffff;
     border-radius: 17px;
 }
@@ -196,8 +201,10 @@ body {
 
 .seguir {
     background: #ffffff;
-    margin: 20px 54px 0px 55px;
+    /* margin: 20px 7px; */
     padding: 10px;
+    height: fit-content;
+    min-width: 200px;
     font-size: 17px;
     border-radius: 0px;
     border: 2px solid #e44700;
@@ -225,15 +232,24 @@ body {
 }
 
 .datos {
-    margin: 14px 20px;
+    /* margin: 96px 20px; */
+    max-width: 461px;
+    display: flex;
+    height: auto;
+    /* align-items: center; */
+    flex-direction: column;
+    gap: 20px;
+    margin-top: 39px;
+    /* justify-content: center; */
+    flex-wrap: wrap;
 }
 
 #caja {
-    margin-top: 1px;
+    /* margin-top: 1px; */
 }
 
 #caja2 {
-    width: 222px;
+    /* width: 222px; */
 }
 
 #caja3 {
@@ -241,11 +257,14 @@ body {
 }
 
 form.contact-form {
-    margin: 0px 0px 47px 107px;
+    /* margin: 0px 0px 47px 107px; */
 }
 
 .fila {
     display: flex;
+    flex-wrap: wrap;
+    gap: 0px 40px;
+    justify-content: center;
 }
 
 .control-form {
@@ -503,9 +522,10 @@ main .sobre-nosotros{
 
 footer {
         background: #a45302;
+        display: none;
         padding: 13px 0 30px 0;
         margin: auto;
-  overflow: hidden;
+        overflow: hidden;
    }
 
 
