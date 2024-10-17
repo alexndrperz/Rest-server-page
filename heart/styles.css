@@ -1,0 +1,38 @@
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+}
+:root {
+    --width-each-layer: 100px;
+    --height-each-layer: 149px;
+    --separation:25px;
+}
+
+#heart {
+    width: var(--width-each-layer);
+    position: relative;
+    height: var(--height-each-layer);
+    transform: rotate(45deg);
+    background: red;
+    border-radius: 200px 200px 0px 0px;
+    animation: palpitation 1s infinite alternate;
+}
+
+#heart::after {
+    position: absolute;
+    content: "";
+    background: red;
+    width:  var(--width-each-layer) ;
+    height:var(--height-each-layer);
+    right: var(--separation);
+    top:var(--separation);
+    border-radius: 200px 200px 0px 0px;
+    transform: rotate(-90deg);
+}
+
+@keyframes palpitation {
+    from {scale:1;}
+    to {scale:2;}
+}
