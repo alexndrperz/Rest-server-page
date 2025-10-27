@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grabadora Multipista y Mezclador (con Metrónomo)</title>
+    <title>Grabadora Multipista y Mezclador (con Guía)</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -88,8 +88,10 @@
             gap: 15px;
             align-items: center;
         }
-        .metronome-controls label {
-            font-weight: bold;
+        .track-monitor-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
         @keyframes pulse {
@@ -115,7 +117,7 @@
     <button id="playAllButton" disabled>▶️ Reproducir Todos</button>
     <button id="combineButton" disabled>⬇️ Mezclar y Descargar (WAV)</button>
     <p id="statusMessage"></p>
-    <p style="font-size: small; color: #3498db;">Nota: El tictac solo suena como guía, no se graba en la pista.</p>
+    <p style="font-size: small; color: #3498db;">**Guía:** Marca las pistas que quieres escuchar mientras grabas (monitorización).</p>
 
     <h3>Pistas Grabadas:</h3>
     <div id="recordingsList">
@@ -135,13 +137,62 @@
         // Variables globales
         let mediaRecorder;
         let audioChunks = [];
-        let recordedAudios = []; 
-        let recordedBlobs = []; 
+        let recordedAudios = []; // Almacena todos los objetos Audio (URL)
+        let recordedBlobs = []; // Almacena los Blobs de audio reales
         let audioStream = null; 
         let audioContext = null; 
-        let metronomeIntervalId = null; // ID del temporizador para el metrónomo
+        let metronomeIntervalId = null; 
+        
+        let monitoredAudioElements = []; // NUEVO: Almacena las referencias de Audio de guía
 
         // --- INICIALIZACIÓN DE AUDIO CONTEXT ---
+// --- FILTRO DE AUDIO ---
+        function applyNoiseFilter(context, inputBuffer) {
+            // Frecuencia de corte: 80 Hz es común para eliminar zumbidos graves (High-Pass Filter)
+            const cutoffFrequency = 80; 
+            const source = context.createBufferSource();
+            source.buffer = inputBuffer;
+
+            const filter = context.createBiquadFilter();
+            filter.type = "highpass"; // Filtro de Paso Alto (deja pasar los altos, corta los bajos)
+            filter.frequency.setValueAtTime(cutoffFrequency, 0);
+            
+            // Crear el Buffer para la salida filtrada
+            const outputBuffer = context.createBuffer(
+                inputBuffer.numberOfChannels,
+                inputBuffer.length,
+                inputBuffer.sampleRate
+            );
+            
+            // Conectar la fuente al filtro y al destino (aunque no lo vamos a escuchar, solo a procesar)
+            source.connect(filter);
+            // El resultado del filtro lo procesamos manualmente
+            
+            // Ejecutar el procesamiento del filtro (offline)
+            // Se usa el contexto offline para un procesamiento más rápido y preciso
+            const offlineContext = new OfflineAudioContext(
+                inputBuffer.numberOfChannels,
+                inputBuffer.length,
+                inputBuffer.sampleRate
+            );
+
+            // Clonar la configuración de procesamiento en el contexto offline
+            const offlineSource = offlineContext.createBufferSource();
+            offlineSource.buffer = inputBuffer;
+            
+            const offlineFilter = offlineContext.createBiquadFilter();
+            offlineFilter.type = filter.type;
+            offlineFilter.frequency.setValueAtTime(cutoffFrequency, 0);
+
+            offlineSource.connect(offlineFilter);
+            offlineFilter.connect(offlineContext.destination);
+
+            offlineSource.start();
+
+            return offlineContext.startRendering(); // Esto devuelve una Promesa con el Buffer filtrado
+        }
+
+
         function getAudioContext() {
             if (!audioContext) {
                 audioContext = new (window.AudioContext || window.webkitAudioContext)();
@@ -151,8 +202,14 @@
 
         async function getMicrophoneStream() {
             if (audioStream) return audioStream; 
+
             try {
-                const stream = await navigator.mediaDevices.getUserMedia({ audio: true });
+                // Modificación: Añadir audio: { echoCancellation: false }
+                const stream = await navigator.mediaDevices.getUserMedia({ 
+                    audio: { 
+                        echoCancellation: false 
+                    } 
+                });
                 audioStream = stream;
                 return stream;
             } catch (err) {
@@ -161,68 +218,26 @@
             }
         }
 
-        // --- LÓGICA DEL METRÓNOMO ---
+        // --- FUNCIONES DE GRABACIÓN Y MONITORIZACIÓN ---
 
-        function generateClick(context, time, frequency = 800) {
-            // Genera un sonido de click usando un oscilador y un nodo de ganancia (GainNode)
-            const oscillator = context.createOscillator();
-            const gainNode = context.createGain();
-
-            oscillator.connect(gainNode);
-            gainNode.connect(context.destination);
-
-            oscillator.frequency.setValueAtTime(frequency, time);
-            
-            // Configura la ganancia para un click rápido (envolvente)
-            gainNode.gain.setValueAtTime(1, time);
-            gainNode.gain.exponentialRampToValueAtTime(0.001, time + 0.05); // Fade out rápido
-
-            oscillator.start(time);
-            oscillator.stop(time + 0.05);
-        }
-
-        function startMetronome(tps) {
-            const context = getAudioContext();
-            const interval = 1 / tps; // Tiempo en segundos entre cada tic
-            let nextClickTime = context.currentTime;
-            
-            // Si el contexto está suspendido (navegadores requieren interacción), reanudarlo
-            if (context.state === 'suspended') {
-                context.resume();
-            }
-
-            // Función de programación recursiva para alta precisión
-            function scheduler() {
-                // Tocar todos los clicks que deberían haber sonado hasta el futuro cercano
-                while (nextClickTime < context.currentTime + 0.1) {
-                    generateClick(context, nextClickTime);
-                    nextClickTime += interval; // Programar el siguiente click
-                }
-                metronomeIntervalId = setTimeout(scheduler, 50); // Revisar cada 50ms
-            }
-
-            scheduler(); // Iniciar el loop
-            statusMessage.textContent = `Metrónomo activo: ${tps} TPS.`;
-        }
-
-        function stopMetronome() {
-            if (metronomeIntervalId) {
-                clearTimeout(metronomeIntervalId);
-                metronomeIntervalId = null;
-            }
-            statusMessage.textContent = '';
-        }
-
-        // --- FUNCIONES DE GRABACIÓN (INTEGRACIÓN DEL METRÓNOMO) ---
         async function startRecording() {
+            // Asegurarse de que el AudioContext esté activo
+            getAudioContext().resume();
+            
             const stream = await getMicrophoneStream();
             if (!stream) return; 
 
-            // 1. Iniciar Metrónomo
+            // 1. Iniciar Pistas de Guía (Monitorización)
+            const monitoredTracks = document.querySelectorAll('.monitor-checkbox:checked');
+            if (monitoredTracks.length > 0) {
+                 startMonitoring(monitoredTracks);
+            }
+
+            // 2. Iniciar Metrónomo
             const tps = parseInt(tpsInput.value) || 2;
             startMetronome(tps);
 
-            // 2. Iniciar Grabación
+            // 3. Iniciar Grabación
             let mimeType = MediaRecorder.isTypeSupported('audio/webm') ? 'audio/webm' : 'audio/ogg';
             
             mediaRecorder = new MediaRecorder(stream, { mimeType: mimeType });
@@ -242,18 +257,23 @@
 
             mediaRecorder.start();
 
-            // Actualizar estado de los botones
+            // Deshabilitar botones no utilizados durante la grabación
             recordButton.disabled = true;
             stopButton.disabled = false;
+            playAllButton.disabled = true;
+            combineButton.disabled = true;
             recordButton.classList.add('recording');
             recordingsList.querySelector('p')?.remove();
         }
 
         function stopRecording() {
-            // 1. Detener Metrónomo
+            // 1. Detener Pistas de Guía
+            stopMonitoring();
+            
+            // 2. Detener Metrónomo
             stopMetronome();
 
-            // 2. Detener Grabación
+            // 3. Detener Grabación
             if (mediaRecorder && mediaRecorder.state !== 'inactive') {
                 mediaRecorder.stop();
             }
@@ -265,134 +285,119 @@
             updateButtonsState();
         }
 
-        // --- FUNCIONES DE MEZCLA Y DESCARGA (SIN CAMBIOS) ---
-
-        async function combineAndDownload() {
-            if (recordedBlobs.length === 0) return;
-
-            combineButton.disabled = true;
-            statusMessage.textContent = 'Procesando mezcla... Por favor, espera.';
-
-            try {
-                const context = getAudioContext();
-                const promises = recordedBlobs.map(async (blob) => {
-                    const arrayBuffer = await blob.arrayBuffer();
-                    return context.decodeAudioData(arrayBuffer);
-                });
-
-                const buffers = await Promise.all(promises);
-
-                let maxDuration = 0;
-                buffers.forEach(buffer => {
-                    if (buffer.duration > maxDuration) {
-                        maxDuration = buffer.duration;
-                    }
-                });
-
-                const sampleRate = context.sampleRate;
-                const totalLength = Math.ceil(maxDuration * sampleRate);
-
-                const finalBuffer = context.createBuffer(
-                    1, 
-                    totalLength, 
-                    sampleRate
-                );
-                const finalData = finalBuffer.getChannelData(0);
+        function startMonitoring(checkboxes) {
+            monitoredAudioElements = [];
+            checkboxes.forEach(checkbox => {
+                // Obtener el ID de la pista asociado al checkbox
+                const trackId = checkbox.dataset.trackId;
+                const audio = document.getElementById(trackId);
                 
-                buffers.forEach(buffer => {
-                    const channelData = buffer.getChannelData(0); 
-                    for (let i = 0; i < channelData.length && i < totalLength; i++) {
-                        finalData[i] += channelData[i] * (1 / buffers.length);
-                    }
-                });
-
-                const wavBlob = bufferToWav(finalBuffer, sampleRate);
-                
-                const downloadUrl = URL.createObjectURL(wavBlob);
-                const a = document.createElement('a');
-                a.style.display = 'none';
-                a.href = downloadUrl;
-                a.download = `pista_mezclada_${Date.now()}.wav`; 
-
-                document.body.appendChild(a);
-                a.click(); 
-                window.URL.revokeObjectURL(downloadUrl);
-                document.body.removeChild(a);
-                statusMessage.textContent = `¡Mezcla completada y descargada como WAV!`;
-
-            } catch (error) {
-                statusMessage.textContent = `Error al mezclar: ${error.message}`;
-            } finally {
-                combineButton.disabled = false;
-                updateButtonsState();
-            }
+                if (audio) {
+                    audio.currentTime = 0;
+                    audio.play().catch(e => console.error('Error al iniciar monitorización:', e));
+                    monitoredAudioElements.push(audio);
+                }
+            });
         }
 
-        // --- CODIFICACIÓN WAV (Helper Functions) ---
-        function writeString(view, offset, string) {
-            for (let i = 0; i < string.length; i++) {
-                view.setUint8(offset + i, string.charCodeAt(i));
-            }
+        function stopMonitoring() {
+            monitoredAudioElements.forEach(audio => {
+                audio.pause();
+                audio.currentTime = 0; // Opcional: reiniciar la pista
+            });
+            monitoredAudioElements = [];
         }
-        function floatTo16BitPCM(output, offset, input) {
-            for (let i = 0; i < input.length; i++, offset += 2) {
-                const s = Math.max(-1, Math.min(1, input[i]));
-                output.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
-            }
-        }
-        function bufferToWav(audioBuffer, sampleRate) {
-            const numChannels = 1;
-            const data = audioBuffer.getChannelData(0);
-            const buffer = new ArrayBuffer(44 + data.length * 2);
-            const view = new DataView(buffer);
+
+        // --- LÓGICA DEL METRÓNOMO (SIN CAMBIOS) ---
+
+        function generateClick(context, time, frequency = 800) {
+            const oscillator = context.createOscillator();
+            const gainNode = context.createGain();
+
+            oscillator.connect(gainNode);
+            gainNode.connect(context.destination);
+
+            oscillator.frequency.setValueAtTime(frequency, time);
             
-            // RIFF chunk header
-            writeString(view, 0, 'RIFF'); 
-            view.setUint32(4, 36 + data.length * 2, true); 
-            writeString(view, 8, 'WAVE'); 
+            gainNode.gain.setValueAtTime(1, time);
+            gainNode.gain.exponentialRampToValueAtTime(0.001, time + 0.05); 
 
-            // FMT sub-chunk
-            writeString(view, 12, 'fmt '); 
-            view.setUint32(16, 16, true); 
-            view.setUint16(20, 1, true); 
-            view.setUint16(22, numChannels, true); 
-            view.setUint32(24, sampleRate, true); 
-            view.setUint32(28, sampleRate * numChannels * 2, true); 
-            view.setUint16(32, numChannels * 2, true); 
-            view.setUint16(34, 16, true); 
-
-            // DATA sub-chunk
-            writeString(view, 36, 'data'); 
-            view.setUint32(40, data.length * 2, true); 
-            
-            // PCM data
-            floatTo16BitPCM(view, 44, data);
-            
-            return new Blob([view], { type: 'audio/wav' });
+            oscillator.start(time);
+            oscillator.stop(time + 0.05);
         }
 
+        function startMetronome(tps) {
+            const context = getAudioContext();
+            const interval = 1 / tps;
+            let nextClickTime = context.currentTime;
+            
+            if (context.state === 'suspended') {
+                context.resume();
+            }
 
-        // --- FUNCIONES DE INTERFAZ Y REPRODUCCIÓN (SIN CAMBIOS SIGNIFICATIVOS) ---
+            function scheduler() {
+                while (nextClickTime < context.currentTime + 0.1) {
+                    generateClick(context, nextClickTime);
+                    nextClickTime += interval; 
+                }
+                metronomeIntervalId = setTimeout(scheduler, 50); 
+            }
+
+            scheduler(); 
+            statusMessage.textContent = `Metrónomo activo: ${tps} TPS.`;
+        }
+
+        function stopMetronome() {
+            if (metronomeIntervalId) {
+                clearTimeout(metronomeIntervalId);
+                metronomeIntervalId = null;
+            }
+            statusMessage.textContent = '';
+        }
+
+        // --- FUNCIONES DE INTERFAZ Y MEZCLA ---
 
         function addRecordingToList(audioUrl) {
             const audio = new Audio(audioUrl);
+            const trackCount = recordedAudios.length + 1;
             recordedAudios.push(audio);
 
             const item = document.createElement('div');
             item.classList.add('recording-item');
             
             const trackName = document.createElement('span');
-            trackName.textContent = `Pista ${recordedAudios.length}`;
+            trackName.textContent = `Pista ${trackCount}`;
 
+            // Controles de monitorización (NUEVO)
+            const monitorGroup = document.createElement('div');
+            monitorGroup.classList.add('track-monitor-group');
+            
+            const monitorCheckbox = document.createElement('input');
+            monitorCheckbox.type = 'checkbox';
+            monitorCheckbox.classList.add('monitor-checkbox');
+            monitorCheckbox.id = `monitor-${trackCount}`;
+            monitorCheckbox.dataset.trackId = `audio-${trackCount}`; // Enlaza con el ID del audio
+            
+            const monitorLabel = document.createElement('label');
+            monitorLabel.textContent = 'Guía';
+            monitorLabel.htmlFor = `monitor-${trackCount}`;
+            
+            monitorGroup.appendChild(monitorCheckbox);
+            monitorGroup.appendChild(monitorLabel);
+
+
+            // Audio control
             const audioControl = document.createElement('audio');
             audioControl.controls = true;
             audioControl.src = audioUrl;
+            audioControl.id = `audio-${trackCount}`; // ID para ser referenciado por el checkbox
 
             const deleteButton = document.createElement('button');
             deleteButton.textContent = '❌';
             deleteButton.onclick = () => removeRecording(item, audio);
 
             item.appendChild(trackName);
+            item.appendChild(monitorGroup); // Añadir el grupo de monitorización
             item.appendChild(audioControl);
             item.appendChild(deleteButton);
             recordingsList.appendChild(item);
@@ -419,6 +424,14 @@
              const items = recordingsList.querySelectorAll('.recording-item span');
              items.forEach((span, index) => {
                  span.textContent = `Pista ${index + 1}`;
+             });
+             // También actualizar los IDs de los checkboxes y audios
+             recordingsList.querySelectorAll('.monitor-checkbox').forEach((cb, index) => {
+                 cb.id = `monitor-${index + 1}`;
+                 cb.dataset.trackId = `audio-${index + 1}`;
+             });
+             recordingsList.querySelectorAll('audio').forEach((audio, index) => {
+                 audio.id = `audio-${index + 1}`;
              });
         }
 
@@ -456,6 +469,88 @@
                 }, 3000); 
             }
         }
+        
+        // --- FUNCIONES DE MEZCLA Y DESCARGA (SIN CAMBIOS) ---
+        async function combineAndDownload() {
+            if (recordedBlobs.length === 0) return;
+            combineButton.disabled = true;
+            statusMessage.textContent = 'Procesando mezcla... Por favor, espera.';
+            try {
+                const context = getAudioContext();
+                const promises = recordedBlobs.map(async (blob) => {
+                    const arrayBuffer = await blob.arrayBuffer();
+                    return context.decodeAudioData(arrayBuffer);
+                });
+                const buffers = await Promise.all(promises);
+                let maxDuration = 0;
+                buffers.forEach(buffer => {
+                    if (buffer.duration > maxDuration) {
+                        maxDuration = buffer.duration;
+                    }
+                });
+                const sampleRate = context.sampleRate;
+                const totalLength = Math.ceil(maxDuration * sampleRate);
+                const finalBuffer = context.createBuffer(
+                    1, totalLength, sampleRate
+                );
+                const finalData = finalBuffer.getChannelData(0);
+                buffers.forEach(buffer => {
+                    const channelData = buffer.getChannelData(0); 
+                    for (let i = 0; i < channelData.length && i < totalLength; i++) {
+                        finalData[i] += channelData[i] * (1 / buffers.length);
+                    }
+                });
+                const wavBlob = bufferToWav(finalBuffer, sampleRate);
+                const downloadUrl = URL.createObjectURL(wavBlob);
+                const a = document.createElement('a');
+                a.style.display = 'none';
+                a.href = downloadUrl;
+                a.download = `pista_mezclada_${Date.now()}.wav`; 
+                document.body.appendChild(a);
+                a.click(); 
+                window.URL.revokeObjectURL(downloadUrl);
+                document.body.removeChild(a);
+                statusMessage.textContent = `¡Mezcla completada y descargada como WAV!`;
+            } catch (error) {
+                statusMessage.textContent = `Error al mezclar: ${error.message}`;
+            } finally {
+                combineButton.disabled = false;
+                updateButtonsState();
+            }
+        }
+        function writeString(view, offset, string) {
+            for (let i = 0; i < string.length; i++) {
+                view.setUint8(offset + i, string.charCodeAt(i));
+            }
+        }
+        function floatTo16BitPCM(output, offset, input) {
+            for (let i = 0; i < input.length; i++, offset += 2) {
+                const s = Math.max(-1, Math.min(1, input[i]));
+                output.setInt16(offset, s < 0 ? s * 0x8000 : s * 0x7FFF, true);
+            }
+        }
+        function bufferToWav(audioBuffer, sampleRate) {
+            const numChannels = 1;
+            const data = audioBuffer.getChannelData(0);
+            const buffer = new ArrayBuffer(44 + data.length * 2);
+            const view = new DataView(buffer);
+            writeString(view, 0, 'RIFF'); 
+            view.setUint32(4, 36 + data.length * 2, true); 
+            writeString(view, 8, 'WAVE'); 
+            writeString(view, 12, 'fmt '); 
+            view.setUint32(16, 16, true); 
+            view.setUint16(20, 1, true); 
+            view.setUint16(22, numChannels, true); 
+            view.setUint32(24, sampleRate, true); 
+            view.setUint32(28, sampleRate * numChannels * 2, true); 
+            view.setUint16(32, numChannels * 2, true); 
+            view.setUint16(34, 16, true); 
+            writeString(view, 36, 'data'); 
+            view.setUint32(40, data.length * 2, true); 
+            floatTo16BitPCM(view, 44, data);
+            return new Blob([view], { type: 'audio/wav' });
+        }
+
 
         // --- ASIGNACIÓN DE EVENTOS ---
         recordButton.addEventListener('click', startRecording);
