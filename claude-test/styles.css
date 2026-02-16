@@ -102,13 +102,14 @@ img { max-width: 100%; display: block; }
 }
 .logo span { font-style: italic; color: var(--white); }
 .nav-links { display: flex; gap: 32px; list-style: none; }
+
 .nav-links a {
   font-size: 0.85rem;
   text-transform: uppercase;
   letter-spacing: 2px;
   color: var(--white);
   position: relative;
-  padding-bottom: 4px;
+  /* padding-bottom: 4px; */
   transition: color 0.3s;
 }
 .nav-links a::after {
