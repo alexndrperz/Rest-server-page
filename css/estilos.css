@@ -1,4 +1,4 @@
-/*Inicio de pag*/
+/* #region Root*/
 * {
     margin: 0;
     padding: 0;
@@ -11,15 +11,52 @@ body {
     padding-bottom: 47px;
 }
 
+/* #endregion */
 
-/*Inicio de pag*/
-
-/*Cabecera de la web*/
+/* #region Cabecera de la web*/
 .cabecera {
     display: flex;
     background: #b85d02c2;
     justify-content: space-between;
     padding: 0px 20px;
+}
+
+header {
+    width: 100%;
+    height: 100vh;
+    background: linear-gradient(to right, hsl(22.67deg 100% 7.16% / 61%), hsl(32deg 96.45% 43.36% / 54%)), url(../img/portada.jpg);
+    background-size: cover;
+    background-attachment: fixed;
+    position: relative;
+}
+
+
+
+header .textos-header{
+    height: 100%;
+    width: 54%;
+    margin: -46px  69px;
+    /* margin-bottom: 28px; */
+    display: flex;
+    align-items: center;
+    
+}
+
+.textos-header h1{
+    font-size: 50px;
+    color:#fff;
+}
+
+.textos-header h2{
+    font-size: 30px;
+    font-weight: 300;
+    color:#fff;
+}
+
+.wave{
+    position: absolute;
+    bottom: 0;
+    width: 100%;
 }
 
 .logo {
@@ -55,18 +92,21 @@ body {
 .menu a:hover{
     background: #ff8901b0;
 }
-/*Cabecera de la web*/
+/*#endregion*/
 
 /*Sobre nosotros */
 .about-us-sect {
     padding: 0px 21px;
     display: flex;
+    height: 578px;
+    align-items: center;
     justify-content: center;
 }
 
 .about-us-content {
     width: 100%;
     max-width: 1500px;
+    text-align: center;
     padding: 52px 0 60px 0;
 }
 
@@ -76,11 +116,10 @@ body {
 }
 
 .about-us-content p {
-    text-align: justify;
     font-size: 22px;
     color: #763600;
     margin-top: 19px;
-    line-height: 40px;
+    line-height: 2.3em;
 }
 /*Sobre nosotros */
 
@@ -323,41 +362,7 @@ button.btn.btn-primary {
 
 /* Header */
 
-header {
-    width: 100%;
-    height: 665px;
-    background: -webkit-linear-gradient(to right, hsla(29, 95%, 50%, 0.459), hsla(24, 45%, 52%, 0.664)), url(../img/portada.jpg);
-    background: linear-gradient(to right, hsl(29deg 95% 50% / 46%), hsl(32deg 100% 50% / 42%)), url(../img/portada.jpg);
-    background-size: cover;
-    background-attachment: fixed;
-    position: relative;
-}
 
-
-
-header .textos-header{
-    height: 194px;
-    width: 54%;
-    margin: 148px 62px 120px 69px;
-    
-}
-
-.textos-header h1{
-    font-size: 50px;
-    color:#fff;
-}
-
-.textos-header h2{
-    font-size: 30px;
-    font-weight: 300;
-    color:#fff;
-}
-
-.wave{
-    position: absolute;
-    bottom: 0;
-    width: 100%;
-}
 
 /* About us */
 
