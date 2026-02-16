@@ -448,7 +448,7 @@ section { padding: 120px 0; }
 .menu-card:hover {
   background: rgba(201,169,110,0.05);
   border-color: rgba(201,169,110,0.2);
-  transform: translateY(-4px);
+  transform: translateY(-4px) !important;
 }
 .menu-card-img {
   width: 90px;

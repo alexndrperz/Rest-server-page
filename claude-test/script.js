@@ -56,11 +56,31 @@ navLinks.querySelectorAll('a').forEach(link => {
   });
 });
 
-// ===== MENU CATEGORY BUTTONS =====
+// ===== MENU CATEGORY FILTER =====
+const menuCards = document.querySelectorAll('.menu-card');
+
 document.querySelectorAll('.menu-cat-btn').forEach(btn => {
   btn.addEventListener('click', () => {
     document.querySelectorAll('.menu-cat-btn').forEach(b => b.classList.remove('active'));
     btn.classList.add('active');
+
+    const filter = btn.dataset.filter;
+
+    menuCards.forEach(card => {
+      const matches = filter === 'all' || card.dataset.category === filter;
+
+      if (matches) {
+        card.style.display = '';
+        requestAnimationFrame(() => {
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        });
+      } else {
+        card.style.opacity = '0';
+        card.style.transform = 'translateY(20px)';
+        setTimeout(() => { card.style.display = 'none'; }, 300);
+      }
+    });
   });
 });
 
