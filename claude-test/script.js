@@ -58,6 +58,7 @@ navLinks.querySelectorAll('a').forEach(link => {
 
 // ===== MENU CATEGORY FILTER =====
 const menuCards = document.querySelectorAll('.menu-card');
+const menuGrid = document.querySelector('.menu-grid');
 
 document.querySelectorAll('.menu-cat-btn').forEach(btn => {
   btn.addEventListener('click', () => {
@@ -65,22 +66,49 @@ document.querySelectorAll('.menu-cat-btn').forEach(btn => {
     btn.classList.add('active');
 
     const filter = btn.dataset.filter;
+    const toHide = [];
+    const toShow = [];
+    
+        // // Lock grid height to prevent layout shift
+        // menuGrid.style.minHeight = menuGrid.offsetHeight + 'px';
 
     menuCards.forEach(card => {
       const matches = filter === 'all' || card.dataset.category === filter;
+      if (matches) toShow.push(card);
+      else if (card.style.display !== 'none') toHide.push(card);
+    });
 
-      if (matches) {
-        card.style.display = '';
-        requestAnimationFrame(() => {
-          card.style.opacity = '1';
-          card.style.transform = 'translateY(0)';
-        });
-      } else {
+    // Phase 1: fade out non-matching cards
+    toHide.forEach(card => {
+      card.style.opacity = '0';
+      card.style.transform = 'translateY(20px)';
+    });
+
+    // Phase 2: after fade-out, swap visibility and fade in
+    setTimeout(() => {
+      toHide.forEach(card => { card.style.display = 'none'; });
+
+      toShow.forEach(card => {
         card.style.opacity = '0';
         card.style.transform = 'translateY(20px)';
-        setTimeout(() => { card.style.display = 'none'; }, 300);
-      }
-    });
+        card.style.display = '';
+      });
+
+      // Force reflow then animate in
+      menuGrid.offsetHeight;
+
+      toShow.forEach((card, i) => {
+        setTimeout(() => {
+          card.style.opacity = '1';
+          card.style.transform = 'translateY(0)';
+        }, i * 60);
+      });
+
+      // Release grid height after entries animate in
+      setTimeout(() => {
+        menuGrid.style.minHeight = '';
+      }, toShow.length * 60 + 300);
+    }, 300);
   });
 });
 
