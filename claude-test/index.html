@@ -1,0 +1,417 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>La Maison D'Or - Fine Dining Restaurant</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Lato:wght@300;400;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+  <!-- NAVBAR -->
+  <nav class="navbar" id="navbar">
+    <div class="container">
+      <a href="#" class="logo">La Maison <span>D'Or</span></a>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#about">About</a></li>
+        <li><a href="#menu">Menu</a></li>
+        <li><a href="#gallery">Gallery</a></li>
+        <li><a href="#chef">Chef</a></li>
+        <li><a href="#testimonials">Reviews</a></li>
+        <li><a href="#reservation" class="nav-cta">Reserve</a></li>
+      </ul>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero" id="home">
+    <div class="hero-bg"></div>
+    <div class="hero-overlay"></div>
+    <div class="hero-content">
+      <div class="hero-badge">Est. 1987 &mdash; Michelin Starred</div>
+      <h1>The Art of<br><em>Fine Dining</em></h1>
+      <p>Where culinary mastery meets timeless elegance. Experience extraordinary flavors crafted from the world's finest seasonal ingredients.</p>
+      <div class="hero-buttons">
+        <a href="#reservation" class="btn-primary">Reserve a Table</a>
+        <a href="#menu" class="btn-outline">Explore Menu</a>
+      </div>
+    </div>
+    <div class="scroll-indicator">
+      <div class="mouse"><div class="wheel"></div></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about" id="about">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-image reveal-left">
+          <img src="https://images.unsplash.com/photo-1600891964092-4316c288032e?w=800&q=80" alt="Restaurant interior" loading="lazy">
+        </div>
+        <div class="about-text reveal-right">
+          <span class="section-label">Our Story</span>
+          <h2>A Legacy of Culinary Excellence</h2>
+          <p>Founded in 1987 in the heart of the city, La Maison D'Or has been a beacon of gastronomic artistry for over three decades. Our philosophy is simple: honor the ingredients, respect tradition, and dare to innovate.</p>
+          <p>Every dish that leaves our kitchen tells a story of passion, precision, and an unwavering commitment to perfection. From our hand-selected produce to our carefully curated wine cellar, every detail is considered.</p>
+          <div class="about-stats">
+            <div class="stat reveal stagger-1">
+              <h3>37</h3>
+              <p>Years of Excellence</p>
+            </div>
+            <div class="stat reveal stagger-2">
+              <h3>3</h3>
+              <p>Michelin Stars</p>
+            </div>
+            <div class="stat reveal stagger-3">
+              <h3>50+</h3>
+              <p>Awards Won</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- MENU -->
+  <section class="menu" id="menu">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Our Menu</span>
+        <h2 class="section-title">Signature Creations</h2>
+        <div class="section-line"></div>
+        <p class="section-desc">Each dish is a masterpiece, thoughtfully composed with seasonal ingredients sourced from local artisan producers.</p>
+      </div>
+      <div class="menu-categories reveal">
+        <button class="menu-cat-btn active" data-filter="all">All</button>
+        <button class="menu-cat-btn" data-filter="starters">Starters</button>
+        <button class="menu-cat-btn" data-filter="mains">Mains</button>
+        <button class="menu-cat-btn" data-filter="desserts">Desserts</button>
+      </div>
+      <div class="menu-grid">
+        <div class="menu-card reveal stagger-1" data-category="starters">
+          <img class="menu-card-img" src="https://images.unsplash.com/photo-1546039907-7fa05f864c02?w=200&q=80" alt="Tartare" loading="lazy">
+          <div class="menu-card-info">
+            <div class="menu-card-top">
+              <h4>Tuna Tartare</h4>
+              <span class="menu-card-price">$28</span>
+            </div>
+            <p>Fresh yellowfin tuna, avocado mousse, citrus ponzu, crispy shallots</p>
+          </div>
+        </div>
+        <div class="menu-card reveal stagger-2" data-category="mains">
+          <img class="menu-card-img" src="https://images.unsplash.com/photo-1544025162-d76694265947?w=200&q=80" alt="Wagyu" loading="lazy">
+          <div class="menu-card-info">
+            <div class="menu-card-top">
+              <h4>A5 Wagyu Ribeye</h4>
+              <span class="menu-card-price">$95</span>
+            </div>
+            <p>Japanese A5 wagyu, truffle jus, roasted bone marrow, seasonal vegetables</p>
+          </div>
+        </div>
+        <div class="menu-card reveal stagger-3" data-category="mains">
+          <img class="menu-card-img" src="https://images.unsplash.com/photo-1551183053-bf91a1d81141?w=200&q=80" alt="Lobster" loading="lazy">
+          <div class="menu-card-info">
+            <div class="menu-card-top">
+              <h4>Butter-Poached Lobster</h4>
+              <span class="menu-card-price">$72</span>
+            </div>
+            <p>Maine lobster tail, saffron risotto, champagne beurre blanc</p>
+          </div>
+        </div>
+        <div class="menu-card reveal stagger-4" data-category="starters">
+          <img class="menu-card-img" src="https://images.unsplash.com/photo-1565958011703-44f9829ba187?w=200&q=80" alt="Foie Gras" loading="lazy">
+          <div class="menu-card-info">
+            <div class="menu-card-top">
+              <h4>Seared Foie Gras</h4>
+              <span class="menu-card-price">$42</span>
+            </div>
+            <p>Hudson Valley foie gras, fig compote, brioche toast, port reduction</p>
+          </div>
+        </div>
+        <div class="menu-card reveal stagger-1" data-category="mains">
+          <img class="menu-card-img" src="https://images.unsplash.com/photo-1587314168485-3236d6710814?w=200&q=80" alt="Duck" loading="lazy">
+          <div class="menu-card-info">
+            <div class="menu-card-top">
+              <h4>Roasted Duck Breast</h4>
+              <span class="menu-card-price">$56</span>
+            </div>
+            <p>Moulard duck, cherry gastrique, celery root puree, haricots verts</p>
+          </div>
+        </div>
+        <div class="menu-card reveal stagger-2" data-category="desserts">
+          <img class="menu-card-img" src="https://images.unsplash.com/photo-1488477181946-6428a0291777?w=200&q=80" alt="Chocolate" loading="lazy">
+          <div class="menu-card-info">
+            <div class="menu-card-top">
+              <h4>Valrhona Chocolate Souffl&eacute;</h4>
+              <span class="menu-card-price">$24</span>
+            </div>
+            <p>Dark chocolate souffl&eacute;, cr&egrave;me anglaise, gold leaf</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PARALLAX QUOTE -->
+  <div class="parallax-banner">
+    <div class="parallax-bg" id="parallaxBg"></div>
+    <div class="parallax-overlay"></div>
+    <div class="parallax-content reveal-scale">
+      <blockquote>&ldquo;Cooking is an art, and patience a virtue. Flavor takes time to develop and care to preserve.&rdquo;</blockquote>
+      <cite>&mdash; Chef Laurent Dubois</cite>
+    </div>
+  </div>
+
+  <!-- GALLERY -->
+  <section class="gallery" id="gallery">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Gallery</span>
+        <h2 class="section-title">A Visual Journey</h2>
+        <div class="section-line"></div>
+        <p class="section-desc">Step inside our world of culinary artistry through these captured moments.</p>
+      </div>
+      <div class="gallery-grid">
+        <div class="gallery-item reveal-scale stagger-1">
+          <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=800&q=80" alt="Restaurant dining room" loading="lazy">
+        </div>
+        <div class="gallery-item reveal-scale stagger-2">
+          <img src="https://images.unsplash.com/photo-1466978913421-dad2ebd01d17?w=600&q=80" alt="Plated dish" loading="lazy">
+        </div>
+        <div class="gallery-item reveal-scale stagger-3">
+          <img src="https://images.unsplash.com/photo-1559339352-11d035aa65de?w=600&q=80" alt="Wine cellar" loading="lazy">
+        </div>
+        <div class="gallery-item reveal-scale stagger-4">
+          <img src="https://images.unsplash.com/photo-1504674900247-0877df9cc836?w=800&q=80" alt="Food presentation" loading="lazy">
+        </div>
+        <div class="gallery-item reveal-scale stagger-1">
+          <img src="https://images.unsplash.com/photo-1428515613728-6b4607e44363?w=600&q=80" alt="Kitchen" loading="lazy">
+        </div>
+        <div class="gallery-item reveal-scale stagger-2">
+          <img src="https://ingenieriademenu.com/wp-content/uploads/2022/04/Diferentes-tipos-de-bares-que-existen-y-su-clasificacion.jpg" alt="Bar area" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CHEF -->
+  <section class="chef" id="chef">
+    <div class="container">
+      <div class="chef-grid">
+        <div class="chef-text reveal-left">
+          <span class="section-label">Meet the Chef</span>
+          <h2>Laurent Dubois</h2>
+          <p class="chef-role">Executive Chef & Founder</p>
+          <p>With over three decades of culinary expertise, Chef Laurent has earned recognition across the globe. Trained under the legendary masters of French haute cuisine, he brings a philosophy that balances respect for tradition with a relentless pursuit of innovation.</p>
+          <p>His creations have earned La Maison D'Or three Michelin stars and numerous international accolades. Each plate reflects his belief that food should be an emotional experience, not just a meal.</p>
+          <div class="chef-signature">Laurent Dubois</div>
+        </div>
+        <div class="chef-image reveal-right">
+          <img src="https://images.unsplash.com/photo-1577219491135-ce391730fb2c?w=800&q=80" alt="Chef Laurent Dubois" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- TESTIMONIALS -->
+  <section class="testimonials" id="testimonials">
+    <div class="container">
+      <div class="section-header reveal">
+        <span class="section-label">Testimonials</span>
+        <h2 class="section-title">What Our Guests Say</h2>
+        <div class="section-line"></div>
+      </div>
+      <div class="testimonials-grid">
+        <div class="testimonial-card reveal stagger-1">
+          <div class="testimonial-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+          <p>&ldquo;An absolutely transcendent dining experience. The wagyu literally melted on my tongue, and the wine pairing was impeccable. This is what fine dining should always be.&rdquo;</p>
+          <div class="testimonial-author">
+            <img src="https://images.unsplash.com/photo-1494790108377-be9c29b29330?w=100&q=80" alt="Sarah Mitchell" loading="lazy">
+            <div class="testimonial-author-info">
+              <h4>Sarah Mitchell</h4>
+              <span>Food Critic, NY Times</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal stagger-2">
+          <div class="testimonial-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+          <p>&ldquo;We celebrated our anniversary here and it was pure magic. The ambiance, the service, the flavors &mdash; everything came together to create an unforgettable night.&rdquo;</p>
+          <div class="testimonial-author">
+            <img src="https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?w=100&q=80" alt="James Carter" loading="lazy">
+            <div class="testimonial-author-info">
+              <h4>James Carter</h4>
+              <span>Loyal Guest Since 2015</span>
+            </div>
+          </div>
+        </div>
+        <div class="testimonial-card reveal stagger-3">
+          <div class="testimonial-stars">&#9733; &#9733; &#9733; &#9733; &#9733;</div>
+          <p>&ldquo;Chef Laurent's tasting menu is a journey through flavors I didn't know existed. Each course built upon the last in the most extraordinary way. A must-visit.&rdquo;</p>
+          <div class="testimonial-author">
+            <img src="https://images.unsplash.com/photo-1438761681033-6461ffad8d80?w=100&q=80" alt="Elena Rossi" loading="lazy">
+            <div class="testimonial-author-info">
+              <h4>Elena Rossi</h4>
+              <span>Michelin Guide Reviewer</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- RESERVATION -->
+  <section class="reservation" id="reservation">
+    <div class="container">
+      <div class="reservation-grid">
+        <div class="reservation-info reveal-left">
+          <span class="section-label">Reservations</span>
+          <h2>Book Your Experience</h2>
+          <p>Join us for an unforgettable evening of culinary excellence. We recommend reserving at least two weeks in advance for weekend dining.</p>
+          <div class="info-item">
+            <div class="info-icon">&#9737;</div>
+            <div>
+              <h4>Location</h4>
+              <span>142 Grand Boulevard, New York, NY 10013</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">&#9742;</div>
+            <div>
+              <h4>Phone</h4>
+              <span>+1 (212) 555-0187</span>
+            </div>
+          </div>
+          <div class="info-item">
+            <div class="info-icon">&#9202;</div>
+            <div>
+              <h4>Opening Hours</h4>
+              <span>Tue &ndash; Sun: 5:30 PM &ndash; 11:00 PM<br>Monday: Closed</span>
+            </div>
+          </div>
+        </div>
+        <form class="reservation-form reveal-right">
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Full Name</label>
+              <input type="text" id="name" placeholder="John Doe" required>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input type="email" id="email" placeholder="john@example.com" required>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="date">Date</label>
+              <input type="date" id="date" required>
+            </div>
+            <div class="form-group">
+              <label for="time">Time</label>
+              <select id="time" required>
+                <option value="">Select time</option>
+                <option>5:30 PM</option>
+                <option>6:00 PM</option>
+                <option>6:30 PM</option>
+                <option>7:00 PM</option>
+                <option>7:30 PM</option>
+                <option>8:00 PM</option>
+                <option>8:30 PM</option>
+                <option>9:00 PM</option>
+                <option>9:30 PM</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-row">
+            <div class="form-group">
+              <label for="guests">Guests</label>
+              <select id="guests" required>
+                <option value="">Number of guests</option>
+                <option>1 Guest</option>
+                <option>2 Guests</option>
+                <option>3 Guests</option>
+                <option>4 Guests</option>
+                <option>5 Guests</option>
+                <option>6 Guests</option>
+                <option>7+ Guests</option>
+              </select>
+            </div>
+            <div class="form-group">
+              <label for="occasion">Occasion</label>
+              <select id="occasion">
+                <option value="">Select occasion</option>
+                <option>Casual Dining</option>
+                <option>Birthday</option>
+                <option>Anniversary</option>
+                <option>Business Dinner</option>
+                <option>Special Event</option>
+              </select>
+            </div>
+          </div>
+          <div class="form-group">
+            <label for="notes">Special Requests</label>
+            <textarea id="notes" placeholder="Dietary restrictions, seating preferences, allergies..."></textarea>
+          </div>
+          <button type="submit" class="form-submit">Request Reservation</button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <span class="logo">La Maison <span>D'Or</span></span>
+          <p>A fine dining destination where culinary artistry meets timeless elegance. Three Michelin stars of unforgettable gastronomic experiences.</p>
+          <div class="footer-social">
+            <a href="#" aria-label="Facebook">f</a>
+            <a href="#" aria-label="Instagram">in</a>
+            <a href="#" aria-label="Twitter">tw</a>
+            <a href="#" aria-label="TripAdvisor">ta</a>
+          </div>
+        </div>
+        <div class="footer-col">
+          <h4>Navigation</h4>
+          <ul>
+            <li><a href="#about">Our Story</a></li>
+            <li><a href="#menu">Menu</a></li>
+            <li><a href="#gallery">Gallery</a></li>
+            <li><a href="#chef">Our Chef</a></li>
+            <li><a href="#testimonials">Reviews</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Information</h4>
+          <ul>
+            <li><a href="#">Private Events</a></li>
+            <li><a href="#">Gift Cards</a></li>
+            <li><a href="#">Wine List</a></li>
+            <li><a href="#">Careers</a></li>
+            <li><a href="#">Press</a></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h4>Hours</h4>
+          <ul>
+            <li><a href="#">Mon: Closed</a></li>
+            <li><a href="#">Tue-Thu: 5:30-10 PM</a></li>
+            <li><a href="#">Fri-Sat: 5:30-11 PM</a></li>
+            <li><a href="#">Sun: 5:30-9:30 PM</a></li>
+          </ul>
+        </div>
+      </div>
+      <div class="footer-bottom">
+        &copy; 2026 La Maison D'Or. All Rights Reserved.
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
