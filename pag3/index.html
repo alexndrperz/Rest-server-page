@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Manjares del Edén — Portal de plantas</title>
+<meta name="description" content="Manjares del Edén: plantas de interior, exterior, suculentas y aromáticas, con guías de cuidado para que crezcan sanas en casa.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,600;0,9..144,700;1,9..144,400;1,9..144,600&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ ILUSTRACIONES DE PLANTAS (reutilizables) ============ -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <!-- Maceta -->
+    <symbol id="pot" viewBox="0 0 200 240">
+      <path class="pot" d="M62 172h76l-9 58H71z"/>
+      <rect class="pot-rim" x="55" y="160" width="90" height="17" rx="5"/>
+    </symbol>
+
+    <!-- Pilea -->
+    <symbol id="p-pilea" viewBox="0 0 200 240">
+      <g class="stem"><path d="M100 165 C96 130 80 105 62 92" /><path d="M100 165 C104 128 122 100 142 86"/><path d="M100 165 C100 120 100 80 102 52"/></g>
+      <path class="lf" d="M62 92 C30 96 18 66 34 46 C50 26 82 34 86 60 C88 76 78 88 62 92Z"/>
+      <path class="lf2" d="M142 86 C172 92 186 62 172 42 C158 22 124 28 120 54 C118 70 128 82 142 86Z"/>
+      <path class="lf" d="M102 52 C78 50 70 22 86 10 C98 0 118 4 122 20 C126 38 116 52 102 52Z"/>
+      <g class="slit"><path d="M42 58l14 8M40 72l16 4M156 50l-14 8M164 66l-16 4M92 20l8 10M112 22l-8 10"/></g>
+      <use href="#pot"/>
+    </symbol>
+
+    <!-- Lengua de suegra (Sansevieria) -->
+    <symbol id="p-snake" viewBox="0 0 200 240">
+      <path class="lf2" d="M72 165 C62 120 60 80 70 38 C82 80 86 124 86 165Z"/>
+      <path class="lf" d="M88 165 C84 110 88 60 100 14 C112 60 114 112 110 165Z"/>
+      <path class="lf2" d="M112 165 C114 120 120 78 134 44 C140 88 134 128 128 165Z"/>
+      <path class="lf" d="M80 165 C70 132 66 104 74 78 C86 104 92 134 94 165Z"/>
+      <g class="vein"><path d="M100 30v120M74 60v90M128 70v86"/></g>
+      <use href="#pot"/>
+    </symbol>
+
+    <!-- Cactus -->
+    <symbol id="p-cactus" viewBox="0 0 200 240">
+      <rect class="lf" x="84" y="40" width="34" height="126" rx="17"/>
+      <path class="lf2" d="M84 110 H66 a12 12 0 0 1 -12 -12 V74 a10 10 0 0 1 20 0 V92 h10Z"/>
+      <path class="lf2" d="M118 96 h14 V62 a10 10 0 0 1 20 0 V90 a14 14 0 0 1 -14 14 H118Z"/>
+      <g class="vein"><path d="M101 52v108M64 76v24M142 64v28"/></g>
+      <circle class="flower" cx="101" cy="38" r="8"/>
+      <use href="#pot"/>
+    </symbol>
+
+    <!-- Suculenta (roseta) -->
+    <symbol id="p-succulent" viewBox="0 0 200 240">
+      <g transform="translate(100 140)">
+        <ellipse class="lf2" rx="18" ry="44" transform="rotate(-70)"/>
+        <ellipse class="lf2" rx="18" ry="44" transform="rotate(70)"/>
+        <ellipse class="lf2" rx="18" ry="44" transform="rotate(-35)"/>
+        <ellipse class="lf2" rx="18" ry="44" transform="rotate(35)"/>
+        <ellipse class="lf" rx="15" ry="36" transform="rotate(-50) translate(0 -6)"/>
+        <ellipse class="lf" rx="15" ry="36" transform="rotate(50) translate(0 -6)"/>
+        <ellipse class="lf" rx="15" ry="36" transform="translate(0 -14)"/>
+        <ellipse class="lf2" rx="11" ry="22" transform="rotate(-20) translate(0 -14)"/>
+        <ellipse class="lf2" rx="11" ry="22" transform="rotate(20) translate(0 -14)"/>
+      </g>
+      <use href="#pot"/>
+    </symbol>
+
+    <!-- Aromática (albahaca / hierbabuena) -->
+    <symbol id="p-herb" viewBox="0 0 200 240">
+      <g class="stem"><path d="M100 165 V70M100 120 C88 104 76 96 64 92M100 104 C114 90 128 84 140 82M100 140 C114 130 126 126 138 126M100 132 C86 124 74 122 62 124"/></g>
+      <ellipse class="lf" cx="100" cy="58" rx="14" ry="20"/>
+      <ellipse class="lf2" cx="60" cy="88" rx="18" ry="12" transform="rotate(-25 60 88)"/>
+      <ellipse class="lf" cx="144" cy="78" rx="18" ry="12" transform="rotate(20 144 78)"/>
+      <ellipse class="lf" cx="58" cy="122" rx="17" ry="11" transform="rotate(10 58 122)"/>
+      <ellipse class="lf2" cx="142" cy="124" rx="17" ry="11" transform="rotate(-10 142 124)"/>
+      <ellipse class="lf2" cx="86" cy="78" rx="10" ry="14" transform="rotate(-30 86 78)"/>
+      <ellipse class="lf2" cx="114" cy="80" rx="10" ry="14" transform="rotate(30 114 80)"/>
+      <use href="#pot"/>
+    </symbol>
+
+    <!-- Pothos colgante -->
+    <symbol id="p-pothos" viewBox="0 0 200 240">
+      <g class="stem"><path d="M70 166 C40 180 30 206 36 236M130 166 C160 182 172 204 166 236M100 160 C96 120 104 90 100 60"/></g>
+      <path class="lf" d="M100 60 c-18 -6 -26 -26 -8 -36 c10 -4 14 4 8 10 c6 -6 14 -6 16 2 c4 14 -6 22 -16 24Z"/>
+      <path class="lf2" d="M76 112 c-20 0 -32 -18 -18 -32 c8 -6 14 0 10 8 c4 -8 14 -8 16 0 c4 12 -2 22 -8 24Z"/>
+      <path class="lf" d="M126 100 c20 -2 30 -20 16 -32 c-8 -6 -14 0 -10 8 c-4 -8 -14 -8 -16 0 c-4 12 2 22 10 24Z"/>
+      <path class="lf2" d="M34 210 c-14 -6 -16 -22 -4 -28 c8 -2 10 4 6 8 c6 -4 12 -2 12 4 c0 10 -6 16 -14 16Z"/>
+      <path class="lf" d="M168 214 c14 -6 16 -22 4 -28 c-8 -2 -10 4 -6 8 c-6 -4 -12 -2 -12 4 c0 10 6 16 14 16Z"/>
+      <use href="#pot"/>
+    </symbol>
+
+    <!-- Hoja suelta para decoración -->
+    <symbol id="leaf" viewBox="0 0 60 100">
+      <path d="M30 98 C4 76 0 40 30 2 C60 40 56 76 30 98Z"/>
+      <path class="vein" d="M30 96V12"/>
+    </symbol>
+  </defs>
+</svg>
+
+<!-- ============ NAVEGACIÓN ============ -->
+<header class="nav" id="nav">
+  <a href="#top" class="brand">
+    <svg class="brand__leaf" viewBox="0 0 60 100" aria-hidden="true"><use href="#leaf"/></svg>
+    <span>Manjares <em>del Edén</em></span>
+  </a>
+  <nav class="nav__links" id="menu">
+    <a href="#colecciones">Colecciones</a>
+    <a href="#catalogo">Catálogo</a>
+    <a href="#cuidados">Cuidados</a>
+    <a href="#nosotros">Nosotros</a>
+  </nav>
+  <div class="nav__right">
+    <button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><span></span><span></span></button>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero" id="top">
+  <div class="hero__text">
+    <p class="eyebrow reveal">Portal de plantas</p>
+    <h1 class="hero__title">
+      <span class="line"><span>Un pedazo</span></span>
+      <span class="line"><span>del <em>Edén</em></span></span>
+      <span class="line"><span>en tu casa.</span></span>
+    </h1>
+    <p class="hero__lead reveal">
+      Plantas de interior, exterior, suculentas y aromáticas elegidas con cariño,
+      con todo lo que necesitas saber para que crezcan sanas.
+    </p>
+    <div class="hero__actions reveal">
+      <a href="#catalogo" class="btn btn--primary">Ver catálogo</a>
+      <a href="#cuidados" class="btn btn--ghost">Guía de cuidados</a>
+    </div>
+  </div>
+
+  <div class="hero__art reveal reveal--scale" id="hero-art">
+    <span class="blob" aria-hidden="true"></span>
+    <svg class="hero__leaf hero__leaf--1" viewBox="0 0 60 100" aria-hidden="true"><use href="#leaf"/></svg>
+    <svg class="hero__leaf hero__leaf--2" viewBox="0 0 60 100" aria-hidden="true"><use href="#leaf"/></svg>
+    <svg class="hero__leaf hero__leaf--3" viewBox="0 0 60 100" aria-hidden="true"><use href="#leaf"/></svg>
+
+    <div class="arch">
+      <svg class="arch__plant" viewBox="0 0 200 240" role="img" aria-label="Ilustración de una pilea en maceta"><use href="#p-pilea"/></svg>
+    </div>
+
+    <div class="badge badge--a">Interior</div>
+    <div class="badge badge--b">Fácil de cuidar</div>
+  </div>
+</section>
+
+<!-- ============ COLECCIONES ============ -->
+<section class="section" id="colecciones">
+  <div class="section__head">
+    <p class="eyebrow reveal">Colecciones</p>
+    <h2 class="reveal">Encuentra la planta para cada rincón</h2>
+  </div>
+
+  <div class="collections">
+    <a href="#catalogo" class="col col--big reveal" data-filter-link="interior">
+      <svg viewBox="0 0 200 240" aria-hidden="true"><use href="#p-pilea"/></svg>
+      <div><h3>Interior</h3><p>Hojas grandes para salas y oficinas.</p></div>
+    </a>
+    <a href="#catalogo" class="col reveal" data-filter-link="suculentas">
+      <svg viewBox="0 0 200 240" aria-hidden="true"><use href="#p-succulent"/></svg>
+      <div><h3>Suculentas y cactus</h3><p>Poco riego, mucha personalidad.</p></div>
+    </a>
+    <a href="#catalogo" class="col reveal" data-filter-link="aromaticas">
+      <svg viewBox="0 0 200 240" aria-hidden="true"><use href="#p-herb"/></svg>
+      <div><h3>Aromáticas</h3><p>Del huerto a la cocina.</p></div>
+    </a>
+    <a href="#catalogo" class="col col--wide reveal" data-filter-link="exterior">
+      <svg viewBox="0 0 200 240" aria-hidden="true"><use href="#p-pothos"/></svg>
+      <div><h3>Exterior y colgantes</h3><p>Balcones, terrazas y patios llenos de vida.</p></div>
+    </a>
+  </div>
+</section>
+
+<!-- ============ CATÁLOGO ============ -->
+<section class="section catalog" id="catalogo">
+  <div class="section__head section__head--row">
+    <div>
+      <p class="eyebrow reveal">Catálogo</p>
+      <h2 class="reveal">Las favoritas de la temporada</h2>
+    </div>
+    <div class="filters reveal" role="group" aria-label="Filtrar plantas">
+      <button class="filter is-active" data-filter="todas">Todas</button>
+      <button class="filter" data-filter="interior">Interior</button>
+      <button class="filter" data-filter="exterior">Exterior</button>
+      <button class="filter" data-filter="suculentas">Suculentas</button>
+      <button class="filter" data-filter="aromaticas">Aromáticas</button>
+    </div>
+  </div>
+
+  <div class="grid" id="grid">
+    <article class="card reveal" data-cat="interior">
+      <div class="card__img" style="--pot:#E9E4D8;--pot-rim:#D9D2C1"><svg viewBox="0 0 200 240" aria-hidden="true"><use href="#p-pilea"/></svg></div>
+      <p class="card__meta">Interior · Luz indirecta</p>
+      <h3>Pilea peperomioides</h3>
+      <div class="card__foot"><span class="price">RD$ 1,450</span></div>
+    </article>
+    <article class="card reveal" data-cat="interior">
+      <div class="card__img" style="--pot:#1F5E3A;--pot-rim:#174A2D"><svg viewBox="0 0 200 240" aria-hidden="true"><use href="#p-snake"/></svg></div>
+      <p class="card__meta">Interior · Poca luz</p>
+      <h3>Lengua de suegra</h3>
+      <div class="card__foot"><span class="price">RD$ 950</span></div>
+    </article>
+    <article class="card reveal" data-cat="suculentas">
+      <div class="card__img" style="--pot:#C9715A;--pot-rim:#B25F49"><svg viewBox="0 0 200 240" aria-hidden="true"><use href="#p-cactus"/></svg></div>
+      <p class="card__meta">Suculentas · Sol directo</p>
+      <h3>Cactus candelabro</h3>
+      <div class="card__foot"><span class="price">RD$ 650</span></div>
+    </article>
+    <article class="card reveal" data-cat="suculentas">
+      <div class="card__img" style="--pot:#FFFFFF;--pot-rim:#E8EFE8"><svg viewBox="0 0 200 240" aria-hidden="true"><use href="#p-succulent"/></svg></div>
+      <p class="card__meta">Suculentas · Mucha luz</p>
+      <h3>Echeveria</h3>
+      <div class="card__foot"><span class="price">RD$ 420</span></div>
+    </article>
+    <article class="card reveal" data-cat="exterior">
+      <div class="card__img" style="--pot:#E9E4D8;--pot-rim:#D9D2C1"><svg viewBox="0 0 200 240" aria-hidden="true"><use href="#p-pothos"/></svg></div>
+      <p class="card__meta">Exterior · Media sombra</p>
+      <h3>Pothos colgante</h3>
+      <div class="card__foot"><span class="price">RD$ 780</span></div>
+    </article>
+    <article class="card reveal" data-cat="aromaticas">
+      <div class="card__img" style="--pot:#C9715A;--pot-rim:#B25F49"><svg viewBox="0 0 200 240" aria-hidden="true"><use href="#p-herb"/></svg></div>
+      <p class="card__meta">Aromáticas · Sol parcial</p>
+      <h3>Albahaca</h3>
+      <div class="card__foot"><span class="price">RD$ 350</span></div>
+    </article>
+    <article class="card reveal" data-cat="aromaticas">
+      <div class="card__img" style="--pot:#1F5E3A;--pot-rim:#174A2D"><svg viewBox="0 0 200 240" aria-hidden="true"><use href="#p-herb"/></svg></div>
+      <p class="card__meta">Aromáticas · Sol parcial</p>
+      <h3>Hierbabuena</h3>
+      <div class="card__foot"><span class="price">RD$ 350</span></div>
+    </article>
+    <article class="card reveal" data-cat="exterior">
+      <div class="card__img" style="--pot:#FFFFFF;--pot-rim:#E8EFE8"><svg viewBox="0 0 200 240" aria-hidden="true"><use href="#p-snake"/></svg></div>
+      <p class="card__meta">Exterior · Sol o sombra</p>
+      <h3>Sansevieria cilíndrica</h3>
+      <div class="card__foot"><span class="price">RD$ 890</span></div>
+    </article>
+  </div>
+</section>
+
+<!-- ============ CUIDADOS ============ -->
+<section class="care" id="cuidados">
+  <svg class="care__leaf care__leaf--1" viewBox="0 0 60 100" aria-hidden="true"><use href="#leaf"/></svg>
+  <svg class="care__leaf care__leaf--2" viewBox="0 0 60 100" aria-hidden="true"><use href="#leaf"/></svg>
+  <div class="care__inner">
+    <div class="section__head">
+      <p class="eyebrow eyebrow--light reveal">Guía de cuidados</p>
+      <h2 class="reveal">Tres claves para plantas felices</h2>
+    </div>
+    <div class="care__grid">
+      <article class="tip reveal">
+        <span class="tip__num">01</span>
+        <h3>Luz</h3>
+        <p>La mayoría de las plantas de interior prefieren luz brillante pero indirecta.
+        Si las hojas se queman, aléjala de la ventana; si crece estirada, acércala.</p>
+      </article>
+      <article class="tip reveal">
+        <span class="tip__num">02</span>
+        <h3>Riego</h3>
+        <p>Riega cuando los primeros centímetros de tierra estén secos. Es mejor quedarse
+        corto que pasarse: el exceso de agua pudre las raíces.</p>
+      </article>
+      <article class="tip reveal">
+        <span class="tip__num">03</span>
+        <h3>Sustrato</h3>
+        <p>Usa macetas con drenaje y un sustrato suelto. Las suculentas y cactus
+        agradecen una mezcla con arena o perlita.</p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<!-- ============ NOSOTROS ============ -->
+<section class="section about" id="nosotros">
+  <div class="about__art reveal reveal--left">
+    <div class="about__circle"><svg viewBox="0 0 200 240" aria-hidden="true"><use href="#p-snake"/></svg></div>
+    <div class="about__circle about__circle--sm"><svg viewBox="0 0 200 240" aria-hidden="true"><use href="#p-succulent"/></svg></div>
+  </div>
+  <div class="about__text">
+    <p class="eyebrow reveal">Nosotros</p>
+    <h2 class="reveal">Creemos que cada hogar merece su propio jardín.</h2>
+    <p class="reveal">
+      En Manjares del Edén seleccionamos cada planta pensando en quien la va a cuidar:
+      desde quien empieza con su primera suculenta hasta quien ya tiene la casa llena de verde.
+      Te acompañamos con consejos claros para que tus plantas crezcan contigo.
+    </p>
+  </div>
+</section>
+
+<!-- ============ BOLETÍN ============ -->
+<section class="news" id="contacto">
+  <div class="news__inner reveal">
+    <h2>Recibe consejos y novedades</h2>
+    <p>Cuidados de temporada, llegadas nuevas y ofertas, directo a tu correo.</p>
+    <form class="news__form" id="news-form" novalidate>
+      <label class="sr-only" for="news-email">Correo electrónico</label>
+      <input type="email" id="news-email" placeholder="tu@correo.com" autocomplete="email" required>
+      <button type="submit" class="btn btn--primary">Suscribirme</button>
+    </form>
+    <p class="news__status" id="news-status" role="status"></p>
+  </div>
+</section>
+
+<footer class="footer">
+  <a href="#top" class="brand brand--footer">
+    <svg class="brand__leaf" viewBox="0 0 60 100" aria-hidden="true"><use href="#leaf"/></svg>
+    <span>Manjares <em>del Edén</em></span>
+  </a>
+  <span>© <span id="year">2026</span> Manjares del Edén</span>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>
