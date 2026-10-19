@@ -8,32 +8,32 @@
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="styles.css">
 </head>
 <body>
 
+<!-- ============ BARRA DE PROGRESO ============ -->
+<div class="progress" id="progress" aria-hidden="true"></div>
+
 <!-- ============ NAVEGACIÓN ============ -->
 <header class="nav" id="nav">
-  <a href="#top" class="nav__mark"><span>LM</span></a>
+  <a href="#top" class="nav__mark">Luis Adrián Montoya</a>
   <nav class="nav__links">
     <a href="#sobre-mi">Sobre mí</a>
     <a href="#experiencia">Experiencia</a>
     <a href="#conocimientos">Conocimientos</a>
-    <a href="#voluntariado">Voluntariado</a>
+    <a href="#contacto" class="nav__cta">Contacto</a>
   </nav>
-  <a href="#contacto" class="nav__cta">Contacto</a>
 </header>
 
 <!-- ============ HERO ============ -->
 <section class="hero" id="top">
-  <div class="hero__grid-bg" aria-hidden="true"></div>
-
   <div class="hero__text">
-    <p class="eyebrow reveal"><span class="mono">&lt;hola/&gt;</span> Soporte multimedia · Portales web</p>
-    <h1 class="hero__name reveal">
-      Luis Adrián
-      <span>Montoya Amparo</span>
+    <p class="eyebrow reveal">Soporte multimedia · Portales web</p>
+    <h1 class="hero__name">
+      <span class="line"><span>Luis Adrián</span></span>
+      <span class="line line--accent"><span>Montoya Amparo</span></span>
     </h1>
     <p class="hero__lead reveal">
       Doy soporte multimedia y desarrollo portales web: desde el diseño en
@@ -41,205 +41,134 @@
       digital que los mantiene vivos.
     </p>
     <div class="hero__actions reveal">
-      <a href="#contacto" class="btn btn--primary">Hablemos</a>
-      <a href="Curriculos.pdf" class="btn btn--ghost" download>Descargar CV</a>
+      <a href="#contacto" class="btn btn--primary">Escríbeme</a>
+      <a href="#experiencia" class="btn btn--ghost">Ver experiencia</a>
     </div>
-    <ul class="hero__stats reveal">
-      <li><strong data-count="3">0</strong><span>empresas</span></li>
-      <li><strong data-count="6">0</strong><span>voluntariados</span></li>
-      <li><strong>2021</strong><span>en el sector</span></li>
-    </ul>
   </div>
 
-  <!-- Foto con figuras de soporte -->
-  <div class="portrait reveal" id="portrait">
-    <span class="shape shape--disc"   aria-hidden="true"></span>
-    <span class="shape shape--ring"   aria-hidden="true"></span>
-    <span class="shape shape--dots"   aria-hidden="true"></span>
-    <span class="shape shape--block"  aria-hidden="true"></span>
-    <span class="shape shape--outline" aria-hidden="true"></span>
-    <svg class="shape shape--tri" viewBox="0 0 100 100" aria-hidden="true"><polygon points="50,6 96,92 4,92"/></svg>
-    <svg class="shape shape--plus" viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2v20M2 12h20"/></svg>
-    <svg class="shape shape--wave" viewBox="0 0 120 24" aria-hidden="true"><path d="M2 12c10-10 20 10 30 0s20 10 30 0 20 10 30 0 20 10 26 0"/></svg>
+  <!-- Foto con figuras de soporte (se mueven a distinta velocidad al hacer scroll) -->
+  <div class="portrait reveal reveal--scale" id="portrait">
+    <span class="shape shape--disc"    data-speed="-0.12" aria-hidden="true"></span>
+    <span class="shape shape--outline" data-speed="0.05"  aria-hidden="true"></span>
+    <span class="shape shape--dots"    data-speed="0.18"  aria-hidden="true"></span>
+    <span class="shape shape--block"   data-speed="-0.08" aria-hidden="true"></span>
+    <span class="shape shape--ring"    data-speed="0.22"  aria-hidden="true"></span>
+    <span class="shape shape--bar"     data-speed="-0.2"  aria-hidden="true"></span>
 
     <figure class="portrait__frame">
       <img src="foto.jpg" alt="Luis Adrián Montoya Amparo, de traje oscuro y camisa celeste, con los brazos cruzados" width="1500" height="2100">
     </figure>
-
-    <div class="chip chip--code" aria-hidden="true"><span class="mono">&lt;/&gt;</span> Portales web</div>
-    <div class="chip chip--scrum" aria-hidden="true"><span class="dot"></span> Multimedia</div>
   </div>
-
-  <a href="#sobre-mi" class="hero__scroll" aria-label="Bajar"><span></span></a>
 </section>
 
 <!-- ============ SOBRE MÍ ============ -->
 <section class="section about" id="sobre-mi">
-  <div class="section__head reveal">
-    <span class="section__num mono">01</span>
-    <h2>Sobre mí</h2>
-  </div>
-  <div class="about__body">
+  <p class="label reveal">Sobre mí</p>
+  <div class="about__grid">
     <p class="about__quote reveal">
-      Soy una persona activa con mi trabajo, autodidacta e interesado ante nuevos
-      conocimientos, preparado para manejar desafíos o trabajar bajo presión.
+      Soy una persona activa con mi trabajo, autodidacta e interesado en nuevos
+      conocimientos, preparado para manejar desafíos y trabajar bajo presión.
     </p>
-    <p class="reveal">
-      Considero que la comunicación y el trabajo en equipo son la clave para la
-      resolución de conflictos.
-    </p>
-
-    <div class="edu reveal">
-      <h3 class="edu__title">Educación</h3>
-      <article class="edu__item">
-        <span class="tag tag--live">Actualmente</span>
-        <h4>Técnico Superior en Desarrollo de Software</h4>
-        <p>Instituto Tecnológico de las Américas (ITLA)</p>
-      </article>
-      <article class="edu__item">
-        <span class="tag">Bachillerato</span>
-        <h4>Politécnico María de la Altagracia de Villa Duarte</h4>
-        <p>POMAVID</p>
-      </article>
+    <div class="about__side">
+      <p class="reveal">
+        Considero que la comunicación y el trabajo en equipo son la clave para la
+        resolución de conflictos.
+      </p>
+      <dl class="edu">
+        <div class="edu__row reveal">
+          <dt>Actualmente</dt>
+          <dd><strong>Técnico Superior en Desarrollo de Software</strong>Instituto Tecnológico de las Américas (ITLA)</dd>
+        </div>
+        <div class="edu__row reveal">
+          <dt>Bachillerato</dt>
+          <dd><strong>Politécnico María de la Altagracia de Villa Duarte</strong>POMAVID</dd>
+        </div>
+      </dl>
     </div>
   </div>
 </section>
 
 <!-- ============ EXPERIENCIA ============ -->
 <section class="section exp" id="experiencia">
-  <div class="section__head reveal">
-    <span class="section__num mono">02</span>
-    <h2>Experiencia laboral</h2>
-  </div>
+  <p class="label reveal">Experiencia laboral</p>
 
-  <ol class="timeline">
-    <li class="job reveal">
-      <span class="job__date mono">2024 — Presente</span>
-      <div class="job__card">
+  <ol class="timeline" id="timeline">
+    <li class="job reveal reveal--left">
+      <span class="job__date">2024 — Presente</span>
+      <div>
         <h3>Soporte Técnico</h3>
         <p class="job__org">Instituto Dominicano para la Calidad (INDOCAL)</p>
         <p>Técnico de soporte manejando parte de los sistemas de seguridad de la
         institución, la gestión de usuarios y la asistencia a usuarios en las
         diferentes sucursales.</p>
-        <ul class="pills"><li>Seguridad</li><li>Gestión de usuarios</li><li>Soporte</li></ul>
       </div>
     </li>
-    <li class="job reveal">
-      <span class="job__date mono">2023 — 2024</span>
-      <div class="job__card">
+    <li class="job reveal reveal--left">
+      <span class="job__date">2023 — 2024</span>
+      <div>
         <h3>Soporte Remoto / Encargado de Multimedia</h3>
         <p class="job__org">Toner Depot Multiservicios · Santo Domingo</p>
         <p>Rediseño de la página web de la empresa usando Figma, HTML y CSS, además
         de la creación de contenido digital para sus canales oficiales. Por falta
         de personal, trabajé a la vez como técnico de soporte remoto en el área de TICs.</p>
-        <ul class="pills"><li>Figma</li><li>HTML</li><li>CSS</li><li>Contenido digital</li></ul>
       </div>
     </li>
-    <li class="job reveal">
-      <span class="job__date mono">2021 — 2022</span>
-      <div class="job__card">
+    <li class="job reveal reveal--left">
+      <span class="job__date">2021 — 2022</span>
+      <div>
         <h3>Pasante como Desarrollador de Software</h3>
         <p class="job__org">Grupo Media Soft · Santo Domingo</p>
         <p>Pasante en el área de QA del departamento de desarrollo. Líder de grupo en
         el prototipo de un dashboard para monitorear las apps Prestando y Educoco,
         aplicando SCRUM y construido con HTML, CSS y JavaScript.</p>
-        <ul class="pills"><li>QA</li><li>SCRUM</li><li>JavaScript</li><li>Liderazgo</li></ul>
       </div>
     </li>
   </ol>
 </section>
 
-<!-- ============ CONOCIMIENTOS + HABILIDADES ============ -->
+<!-- ============ CONOCIMIENTOS + CONTACTO ============ -->
 <section class="section skills" id="conocimientos">
-  <div class="section__head reveal">
-    <span class="section__num mono">03</span>
-    <h2>Conocimientos</h2>
-  </div>
+  <p class="label reveal">Conocimientos</p>
 
   <div class="skills__grid">
-    <article class="skill reveal">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m10 9 5 3-5 3z"/></svg>
-      <h3>Multimedia y soporte</h3>
-      <p>Contenido digital para canales oficiales y soporte técnico remoto y presencial.</p>
-    </article>
-    <article class="skill reveal">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="14" rx="2"/><path d="M8 21h8M12 18v3"/></svg>
-      <h3>Sistemas</h3>
-      <p>Análisis, diseño y desarrollo de sistemas.</p>
-    </article>
-    <article class="skill reveal">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><ellipse cx="12" cy="5" rx="8" ry="3"/><path d="M4 5v14c0 1.7 3.6 3 8 3s8-1.3 8-3V5M4 12c0 1.7 3.6 3 8 3s8-1.3 8-3"/></svg>
-      <h3>Bases de datos</h3>
-      <p>Análisis, diseño y desarrollo de bases de datos.</p>
-    </article>
-    <article class="skill reveal">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="3"/><path d="M3 9h18M9 21V9"/></svg>
-      <h3>Portales web y UI/UX</h3>
-      <p>Interfaces orientadas al usuario con Figma, HTML, CSS y JavaScript.</p>
-    </article>
-    <article class="skill reveal">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M21 12a9 9 0 1 1-3-6.7"/><path d="M21 3v6h-6"/></svg>
-      <h3>SCRUM</h3>
-      <p>Desarrollo ágil de proyectos.</p>
-    </article>
-    <article class="skill reveal">
-      <svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="9" cy="8" r="3.5"/><path d="M2.5 20c0-3.6 2.9-6 6.5-6s6.5 2.4 6.5 6"/><circle cx="17.5" cy="9" r="2.5"/><path d="M17 14c2.6 0 4.5 1.9 4.5 4.5"/></svg>
-      <h3>Liderazgo</h3>
-      <p>Manejo en la dirección de equipos.</p>
-    </article>
-  </div>
-
-  <div class="soft reveal">
-    <h3>Habilidades</h3>
-    <ul class="soft__list">
-      <li>Imparcialidad</li>
-      <li>Rápida adaptación al cambio</li>
-      <li>Mediador en resolución de conflictos</li>
-      <li>Comunicación asertiva</li>
-      <li>Honestidad</li>
-      <li>Empatía</li>
-    </ul>
-  </div>
-</section>
-
-<!-- ============ VOLUNTARIADO ============ -->
-<section class="section vol" id="voluntariado">
-  <div class="section__head reveal">
-    <span class="section__num mono">04</span>
-    <h2>Voluntariado y actividades</h2>
-  </div>
-
-  <div class="vol__grid">
-    <article class="vol__item reveal"><span class="vol__role">Presidente del Distrito 10-04</span><h3>Voluntario Regional PLERD</h3><p>Programa de Liderazgo Educativo · Regional 10</p></article>
-    <article class="vol__item reveal"><span class="vol__role">Fundador y director</span><h3>Proyecto Atenea</h3><p>Voluntariado en formación</p></article>
-    <article class="vol__item reveal"><span class="vol__role">Tallerista STEAM</span><h3>Diario Joven</h3><p>Talleres del área de STEAM</p></article>
-    <article class="vol__item reveal"><span class="vol__role">Capacitador</span><h3>INDOCAL</h3><p>Jornadas de puertas abiertas · área de OAI</p></article>
-    <article class="vol__item reveal"><span class="vol__role">Juez</span><h3>Saint Joseph Debate &amp; Speech Tournament VI</h3><p>Torneo de debate y oratoria</p></article>
-    <article class="vol__item reveal"><span class="vol__role">Participante</span><h3>Challenge Popular 2025</h3><p>Edición 2025</p></article>
-  </div>
-</section>
-
-<!-- ============ CONTACTO ============ -->
-<section class="contact" id="contacto">
-  <span class="shape shape--ring contact__ring" aria-hidden="true"></span>
-  <span class="shape shape--dots contact__dots" aria-hidden="true"></span>
-  <div class="contact__inner reveal">
-    <p class="eyebrow"><span class="mono">05</span> Contacto</p>
-    <h2>¿Construimos algo juntos?</h2>
-    <div class="contact__links">
-      <a href="mailto:lama96088@gmail.com" class="contact__link">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 7 9 6 9-6"/></svg>
-        lama96088@gmail.com
-      </a>
-      <a href="tel:+18098814137" class="contact__link">
-        <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M5 3h4l2 5-2.5 1.5a11 11 0 0 0 6 6L16 13l5 2v4a2 2 0 0 1-2 2A16 16 0 0 1 3 5a2 2 0 0 1 2-2Z"/></svg>
-        809 881 4137
-      </a>
+    <div class="skills__col">
+      <ol class="know">
+        <li class="reveal">Contenido digital y soporte multimedia</li>
+        <li class="reveal">Desarrollo de portales e interfaces orientadas al usuario (UI/UX)</li>
+        <li class="reveal">Análisis, diseño y desarrollo de sistemas</li>
+        <li class="reveal">Análisis, diseño y desarrollo de bases de datos</li>
+        <li class="reveal">Desarrollo ágil de proyectos (SCRUM)</li>
+        <li class="reveal">Manejo en la dirección de equipos</li>
+      </ol>
     </div>
-    <p class="contact__note">Referencias disponibles a solicitud.</p>
+
+    <form class="form reveal reveal--right" id="contacto" novalidate>
+      <h2 class="form__title">¿Construimos algo juntos?</h2>
+      <p class="form__intro">Escríbeme a <a href="mailto:lama96088@gmail.com">lama96088@gmail.com</a> o déjame un mensaje aquí.</p>
+
+      <label class="field">
+        <span>Nombre</span>
+        <input type="text" name="nombre" autocomplete="name" required>
+      </label>
+      <label class="field">
+        <span>Correo</span>
+        <input type="email" name="correo" autocomplete="email" required>
+      </label>
+      <label class="field">
+        <span>Mensaje</span>
+        <textarea name="mensaje" rows="4" required></textarea>
+      </label>
+
+      <button type="submit" class="btn btn--primary">Enviar mensaje</button>
+      <p class="form__status" id="form-status" role="status"></p>
+    </form>
   </div>
-  <footer class="footer">© <span id="year">2026</span> Luis Adrián Montoya Amparo</footer>
 </section>
+
+<footer class="footer">
+  <span>© <span id="year">2026</span> Luis Adrián Montoya Amparo</span>
+  <a href="mailto:lama96088@gmail.com">lama96088@gmail.com</a>
+</footer>
 
 <script src="main.js"></script>
 </body>
