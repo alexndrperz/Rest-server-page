@@ -1,0 +1,358 @@
+﻿<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Carla Ortiz — Diseño Gráfico &amp; Dirección de Arte</title>
+<meta name="description" content="Carla Ortiz (@itscarlaortiz) — diseñadora gráfica. Identidad visual, dirección de arte y contenido para marcas que quieren sentirse vistas.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Jost:wght@200;300;400;500&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+
+<!-- ============ CORTINA DE ENTRADA ============ -->
+<div class="curtain" id="curtain">
+  <span class="curtain__mark">CO</span>
+</div>
+
+<!-- ============ BARRA DE PROGRESO ============ -->
+<div class="progress" id="progress"></div>
+
+<!-- ============ DOCK (header compacto al hacer scroll) ============ -->
+<header class="dock" id="dock">
+  <a href="#top" class="dock__mark">Carla&nbsp;Ortiz</a>
+  <nav class="dock__nav">
+    <a href="#estudio">Estudio</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#trabajo">Trabajo</a>
+    <a href="#sobre-mi">Sobre mí</a>
+  </nav>
+  <a href="#contacto" class="dock__cta">Hablemos</a>
+</header>
+
+<!-- ============ BOTÓN DE MENÚ (fijo, visible desde el inicio en móvil) ============ -->
+<button class="burger" id="burger" aria-label="Abrir menú" aria-expanded="false">
+  <span></span><span></span>
+</button>
+
+<!-- ============ MENÚ MÓVIL ============ -->
+<div class="sheet" id="sheet" hidden>
+  <nav class="sheet__nav">
+    <a href="#estudio"><em>01</em> Estudio</a>
+    <a href="#servicios"><em>02</em> Servicios</a>
+    <a href="#trabajo"><em>03</em> Trabajo</a>
+    <a href="#proceso"><em>04</em> Proceso</a>
+    <a href="#sobre-mi"><em>05</em> Sobre mí</a>
+    <a href="#contacto"><em>06</em> Contacto</a>
+  </nav>
+  <a class="sheet__ig" href="https://instagram.com/itscarlaortiz" target="_blank" rel="noopener">@itscarlaortiz</a>
+</div>
+
+
+<main id="top">
+
+<!-- ================================================================
+     BANNER / HERO
+     ┌ logo izquierda ─────────────────── nav derecha ─┐
+     │                                                  │
+     │   [ foto abajo-izquierda ]   slogan derecha      │
+     └──────────────────────────────────────────────────┘
+     ================================================================ -->
+<section class="hero">
+
+  <!-- fila superior: logo a la izquierda, navegación a la derecha -->
+  <header class="hero__bar">
+    <a class="logo" href="#top" aria-label="Carla Ortiz — inicio">
+      <span class="logo__name">
+        <span class="ch">C</span><span class="ch">a</span><span class="ch">r</span><span class="ch">l</span><span class="ch">a</span><span class="ch">&nbsp;</span><span class="ch">O</span><span class="ch">r</span><span class="ch">t</span><span class="ch">i</span><span class="ch">z</span>
+      </span>
+      <span class="logo__role" data-fade style="--d:.46s">Diseño gráfico &amp; dirección de arte</span>
+    </a>
+
+    <nav class="hero__nav" data-fade style="--d:.22s">
+      <a href="#estudio">Estudio</a>
+      <a href="#servicios">Servicios</a>
+      <a href="#trabajo">Trabajo</a>
+      <a href="#sobre-mi">Sobre mí</a>
+      <a href="#contacto">Contacto</a>
+    </nav>
+  </header>
+
+  <!-- cuerpo: foto izquierda · slogan derecha -->
+  <div class="hero__body">
+
+    <figure class="hero__shot">
+      <div class="shot__frame">
+        <div class="shot__zoom">
+          <img src="ft%20perfil.png" alt="Carla Ortiz, diseñadora gráfica, en su escritorio" id="heroImg">
+        </div>
+        <div class="shot__grain" aria-hidden="true"></div>
+        <span class="veil veil--a" aria-hidden="true"></span>
+        <span class="veil veil--b" aria-hidden="true"></span>
+      </div>
+    </figure>
+
+    <div class="hero__claim">
+      <p class="hero__kicker" data-fade style="--d:.30s">Estudio independiente · 2026</p>
+      <h1 class="slogan">
+        <span class="mask"><span style="--d:.38s">Diseño que se siente</span></span>
+        <span class="mask"><span style="--d:.48s"><em>antes</em> de explicarse.</span></span>
+      </h1>
+      <p class="hero__sub" data-fade style="--d:.62s">
+        Identidad visual y dirección de arte para marcas que quieren
+        dejar de parecerse a todas las demás.
+      </p>
+      <div class="hero__actions" data-fade style="--d:.72s">
+        <a class="pill" href="#servicios">Ver los servicios</a>
+        <a class="plain" href="#trabajo">Portfolio <span>↗</span></a>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="hero__scroll" aria-hidden="true"><span></span>desliza</div>
+</section>
+
+
+<!-- ================================================================
+     MARQUEE
+     ================================================================ -->
+<div class="marquee" aria-hidden="true">
+  <div class="marquee__track">
+    <span>Identidad visual</span><i>✦</i><span>Dirección de arte</span><i>✦</i><span>Branding</span><i>✦</i><span>Social media</span><i>✦</i><span>Editorial</span><i>✦</i><span>Packaging</span><i>✦</i>
+    <span>Identidad visual</span><i>✦</i><span>Dirección de arte</span><i>✦</i><span>Branding</span><i>✦</i><span>Social media</span><i>✦</i><span>Editorial</span><i>✦</i><span>Packaging</span><i>✦</i>
+  </div>
+</div>
+
+
+<!-- ================================================================
+     01 · ESTUDIO — manifiesto + cifras + cuatro columnas
+     ================================================================ -->
+<section class="section estudio" id="estudio">
+  <div class="wrap">
+    <p class="eyebrow" data-reveal>01 — El estudio</p>
+
+    <div class="estudio__top">
+      <h2 class="statement" data-lines>
+        Creo marcas que no gritan.
+        Que se reconocen por su calma,
+        su coherencia y su detalle.
+      </h2>
+
+      <ul class="facts" data-reveal style="--d:.12s">
+        <li><b data-count="48">0</b><span>marcas construidas</span></li>
+        <li><b data-count="6">0</b><span>años diseñando</span></li>
+        <li><b data-count="12">0</b><span>países alcanzados</span></li>
+      </ul>
+    </div>
+
+    <div class="cols">
+      <article class="col" data-reveal>
+        <h3>Enfoque</h3>
+        <p>Antes del logo va la pregunta: ¿qué quieres que sienta alguien que te descubre hoy? Todo lo demás sale de ahí.</p>
+      </article>
+      <article class="col" data-reveal style="--d:.07s">
+        <h3>Método</h3>
+        <p>Investigación, concepto y sistema. Te enseño el <em>porqué</em> de cada decisión para que puedas defenderla sin mí.</p>
+      </article>
+      <article class="col" data-reveal style="--d:.14s">
+        <h3>Para quién</h3>
+        <p>Negocios pequeños, estudios creativos y marcas personales que ya funcionan pero todavía no se ven como son.</p>
+      </article>
+      <article class="col col--hl" data-reveal style="--d:.21s">
+        <h3>Disponibilidad</h3>
+        <p>Acepto entre dos y tres proyectos al mes. Agenda abierta para el próximo trimestre.</p>
+        <a class="col__link" href="#contacto">Reservar plaza <span>↗</span></a>
+      </article>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     02 · SERVICIOS — lista editorial
+     ================================================================ -->
+<section class="section servicios" id="servicios">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="eyebrow" data-reveal>02 — Servicios</p>
+      <h2 class="h2" data-reveal style="--d:.08s">Cómo puedo ayudarte</h2>
+    </div>
+
+    <ul class="svc">
+      <li class="svc__row" data-reveal>
+        <span class="svc__num">01</span>
+        <h3 class="svc__title">Identidad&nbsp;Visual</h3>
+        <p class="svc__desc">Logotipo, paleta, tipografía y manual de marca. Un sistema completo, listo para crecer contigo.</p>
+        <span class="svc__arrow" aria-hidden="true">↗</span>
+      </li>
+      <li class="svc__row" data-reveal style="--d:.06s">
+        <span class="svc__num">02</span>
+        <h3 class="svc__title">Dirección&nbsp;de&nbsp;Arte</h3>
+        <p class="svc__desc">Concepto, moodboard, styling y supervisión de sesiones de foto. Que todo hable el mismo idioma.</p>
+        <span class="svc__arrow" aria-hidden="true">↗</span>
+      </li>
+      <li class="svc__row" data-reveal style="--d:.12s">
+        <span class="svc__num">03</span>
+        <h3 class="svc__title">Social&nbsp;Media</h3>
+        <p class="svc__desc">Plantillas, feed, carruseles y contenido editable. Diseño que puedes mantener tú misma.</p>
+        <span class="svc__arrow" aria-hidden="true">↗</span>
+      </li>
+      <li class="svc__row" data-reveal style="--d:.18s">
+        <span class="svc__num">04</span>
+        <h3 class="svc__title">Editorial&nbsp;&amp;&nbsp;Packaging</h3>
+        <p class="svc__desc">Catálogos, dossiers, etiquetas y empaques. Del archivo a la imprenta, sin sorpresas.</p>
+        <span class="svc__arrow" aria-hidden="true">↗</span>
+      </li>
+    </ul>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     03 · TRABAJO
+     ================================================================ -->
+<section class="section trabajo" id="trabajo">
+  <div class="wrap">
+    <div class="section__head section__head--split">
+      <div>
+        <p class="eyebrow" data-reveal>03 — Trabajo</p>
+        <h2 class="h2" data-reveal style="--d:.08s">Selección reciente</h2>
+      </div>
+      <a class="link-ig" href="https://instagram.com/itscarlaortiz" target="_blank" rel="noopener" data-reveal style="--d:.16s">
+        Ver más en Instagram <span>↗</span>
+      </a>
+    </div>
+
+    <div class="grid">
+      <!-- Deja tus imágenes en /img/ con estos nombres -->
+      <figure class="card card--tall" data-reveal data-tilt>
+        <div class="card__media"><img src="img/post-1.jpg" alt="Proyecto de identidad visual — Maison Vert" loading="lazy"></div>
+        <figcaption><h3>Maison Vert</h3><span>Identidad visual</span></figcaption>
+      </figure>
+
+      <figure class="card" data-reveal style="--d:.08s" data-tilt>
+        <div class="card__media"><img src="img/post-2.jpg" alt="Dirección de arte — Editorial Ámbar" loading="lazy"></div>
+        <figcaption><h3>Ámbar</h3><span>Dirección de arte</span></figcaption>
+      </figure>
+
+      <figure class="card" data-reveal style="--d:.16s" data-tilt>
+        <div class="card__media"><img src="img/post-3.jpg" alt="Packaging — Sal de Mar" loading="lazy"></div>
+        <figcaption><h3>Sal de Mar</h3><span>Packaging</span></figcaption>
+      </figure>
+
+      <figure class="card" data-reveal data-tilt>
+        <div class="card__media"><img src="img/post-4.jpg" alt="Contenido social — Estudio Lino" loading="lazy"></div>
+        <figcaption><h3>Estudio Lino</h3><span>Social media</span></figcaption>
+      </figure>
+
+      <figure class="card card--tall" data-reveal style="--d:.08s" data-tilt>
+        <div class="card__media"><img src="img/post-5.jpg" alt="Branding — Casa Noma" loading="lazy"></div>
+        <figcaption><h3>Casa Noma</h3><span>Branding completo</span></figcaption>
+      </figure>
+
+      <figure class="card" data-reveal style="--d:.16s" data-tilt>
+        <div class="card__media"><img src="img/post-6.jpg" alt="Editorial — Revista Pausa" loading="lazy"></div>
+        <figcaption><h3>Pausa</h3><span>Editorial</span></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     04 · PROCESO
+     ================================================================ -->
+<section class="section proceso" id="proceso">
+  <div class="wrap">
+    <div class="section__head">
+      <p class="eyebrow" data-reveal>04 — Proceso</p>
+      <h2 class="h2" data-reveal style="--d:.08s">Cuatro pasos, sin misterio</h2>
+    </div>
+    <ol class="steps">
+      <li data-reveal><span class="steps__n">01</span><h3>Escucha</h3><p>Una llamada para entender tu negocio, tu público y lo que te incomoda de tu imagen actual.</p></li>
+      <li data-reveal style="--d:.08s"><span class="steps__n">02</span><h3>Concepto</h3><p>Investigación, referencias y una dirección visual clara. Te presento el <em>porqué</em> antes del <em>qué</em>.</p></li>
+      <li data-reveal style="--d:.16s"><span class="steps__n">03</span><h3>Diseño</h3><p>Construyo el sistema completo con dos rondas de ajustes incluidas. Sin sorpresas de presupuesto.</p></li>
+      <li data-reveal style="--d:.24s"><span class="steps__n">04</span><h3>Entrega</h3><p>Archivos organizados, manual de uso y una sesión para que sepas aplicarlo todo sola.</p></li>
+    </ol>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     05 · SOBRE MÍ
+     ================================================================ -->
+<section class="section sobre" id="sobre-mi">
+  <div class="wrap sobre__wrap">
+    <figure class="sobre__img" data-reveal>
+      <img src="biog.jpg" alt="Carla Ortiz, retrato" loading="lazy">
+    </figure>
+    <div class="sobre__text">
+      <p class="eyebrow" data-reveal>05 — Sobre mí</p>
+      <h2 class="h2" data-reveal style="--d:.08s">Hola, soy Carla</h2>
+      <p data-reveal style="--d:.14s">
+        Llevo seis años dando forma a marcas desde un escritorio lleno de referencias,
+        plantas y demasiadas tazas de café. Estudié diseño gráfico, pero lo que de verdad
+        me enseñó fue trabajar de cerca con gente que apostaba todo por su proyecto.
+      </p>
+      <p data-reveal style="--d:.2s">
+        Me interesa el diseño que envejece bien: sistemas simples, tipografía cuidada y
+        decisiones que puedes explicar. Nada de tendencias que caducan en seis meses.
+      </p>
+      <ul class="tags" data-reveal style="--d:.26s">
+        <li>Adobe Suite</li><li>Figma</li><li>Tipografía</li><li>Print</li><li>Art Direction</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     TESTIMONIO
+     ================================================================ -->
+<section class="section quotes">
+  <div class="wrap">
+    <blockquote data-reveal>
+      <p>“Carla entendió en una llamada lo que yo llevaba dos años intentando explicar. El resultado no solo es bonito: por fin parece <em>nuestro</em>.”</p>
+      <cite>Lucía M. — Fundadora, Maison Vert</cite>
+    </blockquote>
+  </div>
+</section>
+
+
+<!-- ================================================================
+     06 · CONTACTO
+     ================================================================ -->
+<section class="section cta" id="contacto">
+  <div class="wrap cta__wrap">
+    <p class="eyebrow" data-reveal>06 — Contacto</p>
+    <h2 class="cta__big" data-lines>
+      ¿Construimos
+      algo juntas?
+    </h2>
+    <p class="cta__sub" data-reveal style="--d:.1s">
+      Cuéntame de tu proyecto. Respondo en menos de 48&nbsp;horas.
+    </p>
+    <div class="cta__actions" data-reveal style="--d:.18s">
+      <a class="btn" href="mailto:hola@carlaortiz.design">hola@carlaortiz.design</a>
+      <a class="btn btn--ghost" href="https://instagram.com/itscarlaortiz" target="_blank" rel="noopener">@itscarlaortiz</a>
+    </div>
+  </div>
+</section>
+
+</main>
+
+<footer class="foot">
+  <div class="wrap foot__wrap">
+    <span>© 2026 Carla Ortiz</span>
+    <span class="foot__mid">Diseño gráfico &amp; dirección de arte</span>
+    <a href="#top" class="foot__up">Volver arriba ↑</a>
+  </div>
+</footer>
+
+<script src="main.js"></script>
+</body>
+</html>

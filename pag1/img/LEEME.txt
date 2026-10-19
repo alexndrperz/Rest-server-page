@@ -1,0 +1,24 @@
+IMÁGENES DE LA PÁGINA
+=====================
+
+Coloca aquí las capturas de los posts de Instagram de @itscarlaortiz
+con EXACTAMENTE estos nombres:
+
+  post-1.jpg   -> tarjeta grande (vertical 3:4)
+  post-2.jpg   -> cuadrada 1:1
+  post-3.jpg   -> cuadrada 1:1
+  post-4.jpg   -> cuadrada 1:1
+  post-5.jpg   -> tarjeta grande (vertical 3:4)
+  post-6.jpg   -> cuadrada 1:1
+
+La sección "Sobre mí" usa "biog.jpg" (en la raíz del proyecto),
+a color y sin filtro. El banner usa "ft perfil.png".
+
+Notas
+-----
+- Si un archivo no existe, la tarjeta muestra un marcador beige
+  elegante en lugar de romperse. Puedes ir subiéndolos poco a poco.
+- Formato: .jpg (si usas .png, cambia la extensión en index.html).
+- Tamaño recomendado: 1200 px de ancho mínimo, menos de 500 KB.
+- Los títulos de cada proyecto ("Maison Vert", "Ámbar", etc.) son de
+  ejemplo: cámbialos en index.html, sección <!-- 03 · TRABAJO -->.
